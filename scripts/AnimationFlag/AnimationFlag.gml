@@ -1,11 +1,10 @@
 /**
  * Light weight object that marks beginning and end of animation
- * 
  * @constructor AnimationFlag
- * @param name - Name of AnimationFlag
- * @param start - Subimage index where the animation starts
- * @param length - Number of subimages in a row for the animation
- * @param speed - Speed animation plays at, can also be negative
+ * @param {string} name - Name of AnimationFlag
+ * @param {real} start - Subimage index where the animation starts
+ * @param {real} stop - Subimage index where the animation stops
+ * @param {real} speed - Speed animation plays at, can also be negative
  */
  //* @param stop - Subimage index where the animation stops
 function AnimationFlag(_name, _start, _stop, _speed) constructor {
@@ -17,9 +16,9 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
     parent = undefined;
 
     /**
-     * Runs flag
-     * 
+     * Runs flag making changes to the index and returns self
      * @function run
+     * @returns {struct} self
      */
     run = function() {
         index += speed;
@@ -33,30 +32,27 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
     }
 
     /**
-     * Gets the difference between the stop and start indexes
-     * 
+     * Returns the difference between the stop and start indexes plus 1
      * @function get_flag_diff
-     * @returns real
+     * @returns {real} Difference of start and stop indexes plus 1
      */
     get_flag_diff = function() {
         return (stop - start) + 1;
     }
 
     /**
-     * Gets the current index of the flag
-     * 
+     * Gets the index of the flag
      * @function get
-     * @returns real
+     * @returns {real} Index of flag
      */
     get = function() {
         return index;
     }
 
     /**
-     * Resets index to start index
-     * 
+     * Resets index to start and returns self
      * @function reset
-     * @returns self
+     * @returns {struct} self
      */
     reset = function() {
         index = start;

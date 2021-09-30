@@ -1,9 +1,8 @@
 /**
  * Light weight object that manages multiple animations on a single sprite
- * 
  * @constructor AnimationManager
- * @param name - Name of AnimationManager
- * @param sprite - Sprite index of animation
+ * @param {string} name - Name of AnimationManager
+ * @param {real} sprite - Sprite index of animation sprite
  */
 function AnimationManager(_name, _sprite) constructor {
     name = _name;
@@ -14,10 +13,9 @@ function AnimationManager(_name, _sprite) constructor {
 
     /**
      * Adds a flag
-     * 
      * @function add_flag
-     * @param flag - AnimationFlag to add to flags
-     * @param replace - Overwrite AnimationFlag with the same name if it exists in flags
+     * @param {struct} flag - AnimationFlag to add to flags
+     * @param {boolean} [replace=false] - Overwrite AnimationFlag with the same name if it exists in flags
      */
     add_flag = function(_flag, _replace=false) {
         if !_replace && flag_exists(flags, _flag.name) {
@@ -29,10 +27,9 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
-     * Removes flag
-     * 
+     * Removes flag by name
      * @function remove_flag
-     * @param name - Name of AnimationFlag to remove from flags
+     * @param {string} name - Name of AnimationFlag to remove from flags
      */
     remove_flag = function(_name) {
         if !flag_exists(_name) {
@@ -44,11 +41,10 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
-     * Gets a flag
-     * 
+     * Returns a flag based on name passed
      * @function get_flag
-     * @param name - Gets AnimationFlag by name from flags
-     * @returns AnimationFlag
+     * @param {string} name - Gets AnimationFlag by name from flags
+     * @returns {struct} AnimationFlag that represents the name
      */
     get_flag = function(_name) {
         if !flag_exists(_name) {
@@ -59,11 +55,9 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
-     * Get the active flag
-     * 
+     * Returns AnimationFlag struct that represents the active flag
      * @function get_active_flag
-     * @param name - Gets the active AnimationFlag
-     * @returns AnimationFlag
+     * @returns {struct} AnimationFlag struct that represents the active flag
      */
     get_active_flag = function() {
         if !flag_exists(active_flag) {
@@ -75,10 +69,9 @@ function AnimationManager(_name, _sprite) constructor {
 
     /**
      * Sets active flag to name
-     * 
      * @function set_flag
-     * @param name - AnimationFlag to set as active flag
-     * @param reset_index - AnimationFlag to reset its index to start index
+     * @param {string} name - Name of AnimationFlag to set as active flag
+     * @param {boolean} [reset_index=true] - AnimationFlag to reset its index to start index
      */
     set_flag = function(_name, _reset_index=true) {
         if !flag_exists(_name) {
@@ -93,19 +86,17 @@ function AnimationManager(_name, _sprite) constructor {
 
     /**
      * Checks whether a flag exists
-     * 
      * @function flag_exists
-     * @param name - Name of AnimationFlag to check in flags
+     * @param {string} name - Name of AnimationFlag to check in flags
      */
     flag_exists = function(_name) {
         return ds_map_exists(flags, _name);
     }
 
     /**
-     * Gets the name of sprite animation
-     * 
+     * Returns the name of sprite animation
      * @function get_sprite_name
-     * @returns sprite_name
+     * @returns {string} Name of sprite
      */
     get_sprite_name = function() {
         return sprite_get_name(sprite);
@@ -113,9 +104,8 @@ function AnimationManager(_name, _sprite) constructor {
 
     /**
      * Cleans up data structures when you no longer need the manager
-     * 
      * @function destroy
-     * @note Run this on a Clean Up Event to prevent data leaks
+     * @note Run this in the Clean Up Event to prevent data leaks
      */
     destroy = function() {
         ds_map_destroy(flags);
@@ -123,7 +113,6 @@ function AnimationManager(_name, _sprite) constructor {
 
     /**
      * Debug message that prepends manager name and prints in output
-     * 
      * @function debug_msg
      * @param msg - Debug message to print in output
      */
@@ -132,8 +121,7 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
-     * Runs current flag
-     * 
+     * Runs the active flag
      * @function run
      */
     run = function() {
