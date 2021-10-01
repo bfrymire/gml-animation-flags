@@ -315,7 +315,8 @@ Runs flag making changes using the `speed` to the `index`. This method doesn't n
 - Does not work with versions of GameMaker Studio 2 before v.2.3.3 because of the default parameters
 - No implementation to change `AnimationFlag.speed` on the fly
 	- *(The `speed` variable can be edited directly by calling `AnimationFlag.speed`)*
-- `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) into consideration.
+- `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) or the Frame Speed from the [Sprite Editor](https://manual.yoyogames.com/The_Asset_Editors/Sprites.htm) into consideration.
+	- *(To change the speed of the sprite, it must be done on the `AnimationFlag` level individually per flag)*
 
 ## Credits
 
