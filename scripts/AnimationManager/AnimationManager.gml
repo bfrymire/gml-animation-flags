@@ -15,10 +15,10 @@ function AnimationManager(_name, _sprite) constructor {
      * Adds a flag
      * @function add_flag
      * @param {struct} flag - AnimationFlag to add to flags
-     * @param {boolean} [replace=false] - Overwrite AnimationFlag with the same name if it exists in flags
+     * @param {boolean} [replace=false] - Overwrites AnimationFlag with the same name if it exists in flags
      */
     add_flag = function(_flag, _replace=false) {
-        if !_replace && flag_exists(flags, _flag.name) {
+        if flag_exists(_flag.name) && !_replace {
             debug_msg("flag with name " + _flag.name + " already exists.");
             return;
         }
@@ -41,15 +41,34 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
+     * Sets active flag to name
+     * @function set_flag
+     * @param {string} name - Name of AnimationFlag to set as active flag
+     * @param {boolean} [reset=true] - AnimationFlag to reset its index to start
+     * @returns {struct} self
+     */
+    set_flag = function(_name, _reset=true) {
+        if flag_exists(_name) {
+            active_flag = _name;
+            if _reset {
+                get_active_flag().reset();
+            }
+        } else {
+            debug_msg("flag with name " + _name + " does not exists.");
+        }
+        return self;
+    }
+
+    /**
      * Returns a flag based on name passed
      * @function get_flag
-     * @param {string} name - Gets AnimationFlag by name from flags
-     * @returns {struct} AnimationFlag that represents the name
+     * @param {string} name - Name of AnimationFlag
+     * @returns {struct|undefined} AnimationFlag that represents the name if it exists
      */
     get_flag = function(_name) {
         if !flag_exists(_name) {
             debug_msg("flag with name " + _name + " does not exists.");
-            return;
+            return undefined;
         }
         return flags[? _name];
     }
@@ -57,31 +76,10 @@ function AnimationManager(_name, _sprite) constructor {
     /**
      * Returns AnimationFlag struct that represents the active flag
      * @function get_active_flag
-     * @returns {struct} AnimationFlag struct that represents the active flag
+     * @returns {struct|undefined} AnimationFlag struct that represents the active flag if it exists
      */
     get_active_flag = function() {
-        if !flag_exists(active_flag) {
-            debug_msg("flag with name " + string(active_flag) + " does not exists.");
-            return;
-        }
-        return flags[? active_flag];
-    }
-
-    /**
-     * Sets active flag to name
-     * @function set_flag
-     * @param {string} name - Name of AnimationFlag to set as active flag
-     * @param {boolean} [reset_index=true] - AnimationFlag to reset its index to start index
-     */
-    set_flag = function(_name, _reset_index=true) {
-        if !flag_exists(_name) {
-            debug_msg("flag with name " + _name + " does not exist.");
-            return;
-        }
-        active_flag = _name;
-        if _reset_index {
-            get_flag(active_flag).reset();
-        }
+        return get_flag(active_flag);
     }
 
     /**
