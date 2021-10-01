@@ -119,8 +119,9 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
-     * Runs the active flag
+     * Runs the active flag and returns self
      * @function run
+     * @returns {struct} self
      */
     run = function() {
         if is_undefined(active_flag) || state == ANIMATION_FLAG_STATES.STOP {
@@ -131,5 +132,6 @@ function AnimationManager(_name, _sprite) constructor {
             return;
         }
         flags[? active_flag].run();
+        return self;
     }
 }

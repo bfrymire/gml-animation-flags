@@ -43,7 +43,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
     }
 
     /**
-     * Runs flag making changes to the index
+     * Runs flag making changes to the index and returns self
      * @function run
      * @returns {struct} self
      */
@@ -55,6 +55,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
         while (index < start) {
             index += get_flag_diff();
         }
+        return self;
     }
 
 }
