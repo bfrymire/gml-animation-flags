@@ -9,6 +9,17 @@ Animation Manager is a light weight object that manages multiple animations for 
  3. Import the .yymps file into your project from the top menu:
 	- Tools **>** Import Local Package
 
+## Setup
+
+```js
+// create animation manager
+animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+// add animation flag to manager
+animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+// set active flag
+animation_manager.set_flag("attack_1");
+```
+
 ## Constructors and Methods
 
 ### `AnimationManager(name, sprite)`
