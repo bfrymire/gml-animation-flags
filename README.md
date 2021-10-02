@@ -174,6 +174,18 @@ var has_atk_1_anim = animation_manager.flag_exists("attack_1");
 
 &nbsp;
 
+### `.get_flags_number()`
+
+**Returns:** Real, number of flags
+
+|Name|Datatype|Purpose|
+|--|--|--|
+|None|||
+
+Returns number of flags.
+
+&nbsp;
+
 ### `.get_sprite_name()`
 
 **Returns:** String, name of `sprite_index` at `sprite`
