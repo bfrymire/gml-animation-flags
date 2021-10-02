@@ -8,6 +8,7 @@ function AnimationManager(_name, _sprite) constructor {
     name = _name;
     sprite = _sprite
     flags = ds_map_create();
+    __flags_order__ = [];
     active_flag = undefined;
     state = ANIMATION_FLAG_STATES.RUN;
 
@@ -23,6 +24,7 @@ function AnimationManager(_name, _sprite) constructor {
             return;
         }
         flags[? _flag.name] = _flag;
+        array_push(__flags_order__, _flag.name);
         _flag.parent = self;
     }
 
@@ -38,6 +40,14 @@ function AnimationManager(_name, _sprite) constructor {
         }
         flags[? _name].parent = undefined;
         ds_map_delete(flags, _name);
+        var _len = get_flags_number();
+        // Remove flag name from flags order
+        for(var i = 0; i < _len; i++) {
+            if __flags_order__[i] == _name {
+                array_delete(__flags_order__, i, 1);
+                break;
+            }
+        }
     }
 
     /**
@@ -71,6 +81,15 @@ function AnimationManager(_name, _sprite) constructor {
             return undefined;
         }
         return flags[? _name];
+    }
+
+    /**
+     * Returns a number of flags
+     * @function get_flags_number
+     * @returns {real} Number of flags
+     */
+    get_flags_number = function() {
+        return ds_map_size(flags);
     }
 
     /**
