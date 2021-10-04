@@ -66,4 +66,13 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
         return _mod;
     }
 
+    /**
+     * Returns printable representation of AnimationFlag
+     * @function repr
+     * @returns {string} Printable representation of AnimationFlag
+     */
+    repr = function() {
+        return "<AnimationFlag - " + name + " " + string(floor(index)) + ">";
+    }
+
 }
