@@ -10,7 +10,7 @@ animation_manager.add_flag(new AnimationFlag("corner_climb", 17, 21, _speed));
 animation_manager.add_flag(new AnimationFlag("corner_grab", 22, 25, _speed));
 animation_manager.add_flag(new AnimationFlag("corner_jump", 26, 28, _speed));
 animation_manager.add_flag(new AnimationFlag("crouch", 29, 32, _speed));
-animation_manager.add_flag(new AnimationFlag("die", 33, 39, _speed));
+animation_manager.add_flag(new AnimationFlag("die", 33, 39, 0.085));
 animation_manager.add_flag(new AnimationFlag("fall", 40, 41, _speed));
 animation_manager.add_flag(new AnimationFlag("hurt", 42, 44, _speed));
 animation_manager.add_flag(new AnimationFlag("idle_1", 45, 48, _speed));
@@ -59,13 +59,21 @@ adventurer_sprite_box = new GUIBox(flag_index_box.x1, 1, floor(room_width / 2) -
 
 // Flag picker box
 flag_picker_box = new GUIBox(adventurer_sprite_box.x2 + 3, adventurer_sprite_box.y1, flag_index_box.x2, adventurer_sprite_box.y2, _margin);
+var _box = flag_picker_box;
+_box.title = {
+	text: "Change the active flag using the arrow keys or mouse wheel:",
+	width: _box.get_inner_width(),
+};
+_box.title.height = string_height_ext(_box.title.text, -1, _box.get_inner_width());
+_box.offset_want = 0;
+_box.offset = 0;
 
 // Overwrite GUIBox draw function
 var _draw = function() {
 	var _c = draw_get_color();
 	draw_set_color(other.colors.background);
 	draw_rectangle(x1, y1, x2, y2, false);
-	draw_set_color(other.colors.green);
+	draw_set_color(other.colors.foreground);
 	draw_rectangle(x1, y1, x2, y2, true);
 	draw_set_color(_c);
 }
