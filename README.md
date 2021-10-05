@@ -39,7 +39,7 @@ Many of the limitations will be fixed in future updates:
 
 ## Credits
 
- - Sprite base in example created by [@Dead Revolver](https://deadrevolver.itch.io/pixel-prototype-player-sprites)
+ - Pixel Platformer Player sprite in example created by [@Dead Revolver](https://deadrevolver.itch.io/pixel-prototype-player-sprites)
  - Color palette in example from [Dracula Theme](https://github.com/dracula/dracula-theme#color-palette)
 
 ## License
