@@ -12,11 +12,13 @@ Animation Flags manages multiple animations for a single sprite by flagging star
 ## Setup
 
 ```js
-// Set up new AnimationManager
+// Set up AnimationManager
 animator = new AnimationManager("Player", spr_pixel_platformer_player);
-// Add animation flag to manager
+
+// Add AnimationFlags to manager
 animator.add_flag(new AnimationFlag("idle", 1, 7, 0.15));
 animator.add_flag(new AnimationFlag("run", 10, 17, 0.15));
+
 // Set active flag
 animator.set_flag("run");
 ```
