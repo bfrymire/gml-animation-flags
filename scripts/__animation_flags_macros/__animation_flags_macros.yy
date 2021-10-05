@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "AnimationManager",
-    "path": "folders/AnimationManager.yy",
+    "name": "AnimationFlags",
+    "path": "folders/AnimationFlags.yy",
   },
   "resourceVersion": "1.0",
-  "name": "__animation_manager",
+  "name": "__animation_flags_macros",
   "tags": [],
   "resourceType": "GMScript",
 }

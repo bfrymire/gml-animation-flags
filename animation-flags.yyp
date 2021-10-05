@@ -4,7 +4,7 @@
     {"id":{"name":"AnimationFlag","path":"scripts/AnimationFlag/AnimationFlag.yy",},"order":1,},
     {"id":{"name":"GUIBox","path":"scripts/GUIBox/GUIBox.yy",},"order":0,},
     {"id":{"name":"AnimationManager","path":"scripts/AnimationManager/AnimationManager.yy",},"order":0,},
-    {"id":{"name":"__animation_manager","path":"scripts/__animation_manager/__animation_manager.yy",},"order":3,},
+    {"id":{"name":"__animation_flags_macros","path":"scripts/__animation_flags_macros/__animation_flags_macros.yy",},"order":3,},
     {"id":{"name":"spr_pixel_platformer_player","path":"sprites/spr_pixel_platformer_player/spr_pixel_platformer_player.yy",},"order":0,},
     {"id":{"name":"obj_controller","path":"objects/obj_controller/obj_controller.yy",},"order":1,},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},"order":0,},
@@ -32,7 +32,7 @@
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/AnimationManager.yy","order":5,"resourceVersion":"1.0","name":"AnimationManager","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/AnimationFlags.yy","order":5,"resourceVersion":"1.0","name":"AnimationFlags","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects.yy","order":9,"resourceVersion":"1.0","name":"Objects","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Rooms.yy","order":10,"resourceVersion":"1.0","name":"Rooms","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts.yy","order":11,"resourceVersion":"1.0","name":"Scripts","tags":[],"resourceType":"GMFolder",},
