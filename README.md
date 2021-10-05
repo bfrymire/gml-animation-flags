@@ -1,6 +1,6 @@
 # GML Animation Manager
 
-Animation Manager is a light weight object that manages multiple animations for a single sprite for GameMaker Studio 2.3.3+
+Animation Manager handles multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
 
 ## Installation
 
@@ -8,6 +8,17 @@ Animation Manager is a light weight object that manages multiple animations for 
  2. [Download the .yymps file](https://github.com/bfrymire/gml-animation-manager/releases/latest)
  3. Import the .yymps file into your project from the top menu:
 	- Tools **>** Import Local Package
+
+## Setup
+
+```js
+// create animation manager
+animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+// add animation flag to manager
+animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+// set active flag
+animation_manager.set_flag("attack_1");
+```
 
 ## Constructors and Methods
 
@@ -151,6 +162,59 @@ var active_flag = animation_manager.get_active_flag();
 
 &nbsp;
 
+### `.get_flag_position(name)`
+
+**Returns:** Real, position of flag based on order, N/A (`undefined`) if not found
+
+|Name|Datatype|Purpose|
+|--|--|--|
+|`name`|string|Name of `AnimationFlag`|
+
+Returns the position of `AnimationFlag` from `flags` that represents the order of the flag was added. Flag positions are base-0. This means the first flag added is at position 0.
+
+If a flag is deleted, the position for flags that were added after the deleted flag will be shifted 1 position lower.
+
+**Example:**
+
+```js
+// init animation manager
+animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+// add flag for "attack_1" animation
+animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+// sets active flag to "attack_1"
+animation_manager.set_flag("attack_1");
+// get the position of "attack_1" flag
+var position = animation_manager.get_flag_position("attack_1"); // 0
+```
+
+&nbsp;
+
+
+### `.get_flag_at_position(index)`
+
+**Returns:** Struct, that represents the flag in position specified, N/A (`undefined`) if not found
+
+|Name|Datatype|Purpose|
+|--|--|--|
+|`index`|real|Position of `AnimationFlag` to get|
+
+Returns `AnimationFlag` struct that is at given position.
+
+**Example:**
+
+```js
+// init animation manager
+animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+// add flag for "attack_1" animation
+animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+// sets active flag to "attack_1"
+animation_manager.set_flag("attack_1");
+// get the flat at position
+var flag = animation_manager.get_flag_at_position(0); // AnimationFlag<attack_1>
+```
+
+&nbsp;
+
 ### `.flag_exists(name)`
 
 **Returns:** Boolean, whether the name of flag exists in `flags`
@@ -220,6 +284,18 @@ Cleans up all data structures when you no longer need the manager by destroying 
 
 &nbsp;
 
+### `.run()`
+
+**Returns:** N/A (`undefined`)
+
+|Name|Datatype|Purpose|
+|--|--|--|
+|None|||
+
+Runs the flag associated with `active_flag` and returns `self`. If `active_flag` is not set or not `AnimationFlag` exists that's associated with the name stored in `active_flag`.
+
+&nbsp;
+
 ### `.debug_msg(msg)`
 
 **Returns:** N/A (`undefined`)
@@ -232,15 +308,15 @@ Method used by the library to display information about the `AnimationManager` a
 
 &nbsp;
 
-### `.run()`
+### `.repr()`
 
-**Returns:** N/A (`undefined`)
+**Returns:** String, printable representation of `AnimationManager`
 
 |Name|Datatype|Purpose|
 |--|--|--|
 |None|||
 
-Runs the flag associated with `active_flag` and returns `self`. If `active_flag` is not set or not `AnimationFlag` exists that's associated with the name stored in `active_flag`.
+Method used by the library to return a printable representation of the `AnimationManager`. This method is strictly for debugging.
 
 ----
 
@@ -318,6 +394,31 @@ Sets `index` to `start` and returns `self`.
 
 Runs flag making changes using the `speed` to the `index`. This method doesn't need to be called manually, it is called by the `parent` `AnimationManager.run` when it is the `active_flag`. If the `index` goes past either `start` or `stop`, depending on the sign of `speed`, the remainder of `index` will be wrapped around the indexes until it falls between them.
 
+&nbsp;
+
+### `.__modulo__(number1, number2)`
+
+**Returns:** Real, remainder of a division between number1 and number2
+
+|Name|Datatype|Purpose|
+|--|--|--|
+|`number1`|real|Dividend of modulo operation|
+|`number2`|real|Divisor of modulo operation|
+
+Using the Euclidean Algorithm, returns the remainder of a division between `number1` and `number2`. The algorithm allows for the use of negative numbers, while modulo *(`mod`, `%`)* in GameMaker returns unexpected results. This algorithm is what handles an `AnimationFlag` to have a negative `speed`.
+
+&nbsp;
+
+### `.repr()`
+
+**Returns:** String, printable representation of `AnimationFlag`
+
+|Name|Datatype|Purpose|
+|--|--|--|
+|None|||
+
+Method used by the library to return a printable representation of the `AnimationFlag`. This method is strictly for debugging.
+
 ## Limitations
 
 - Does not tell you if the animation ends
@@ -327,7 +428,8 @@ Runs flag making changes using the `speed` to the `index`. This method doesn't n
 - Does not work with versions of GameMaker Studio 2 before v.2.3.3 because of the default parameters
 - No implementation to change `AnimationFlag.speed` on the fly
 	- *(The `speed` variable can be edited directly by calling `AnimationFlag.speed`)*
-- `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) into consideration.
+- `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) or the Frame Speed from the [Sprite Editor](https://manual.yoyogames.com/The_Asset_Editors/Sprites.htm) into consideration.
+	- *(To change the speed of the sprite, it must be done on the `AnimationFlag` level individually per flag)*
 
 ## Credits
 

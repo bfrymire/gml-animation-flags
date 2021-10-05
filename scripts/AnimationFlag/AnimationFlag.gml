@@ -49,13 +49,30 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      */
     run = function() {
         index += speed;
-        while (index >= stop + 1) {
-            index -= get_flag_diff();
-        }
-        while (index < start) {
-            index += get_flag_diff();
-        }
+        index = __modulo__(index - start, get_flag_diff()) + start;
         return self;
+    }
+
+    /**
+     * Modulo function that returns the remainder of a division between number1 and number2
+     * @function __modulo__
+     * @param {real} number1
+     * @param {real} number2
+     * @returns {real} Remainder of a division between number1 and number2
+     */
+    __modulo__ = function(_num1, _num2) {
+        var _mod = _num1 % _num2;
+        if (_mod < 0) _mod += abs(_num2);
+        return _mod;
+    }
+
+    /**
+     * Returns printable representation of AnimationFlag
+     * @function repr
+     * @returns {string} Printable representation of AnimationFlag
+     */
+    repr = function() {
+        return "<AnimationFlag - " + name + " " + string(floor(index)) + ">";
     }
 
 }

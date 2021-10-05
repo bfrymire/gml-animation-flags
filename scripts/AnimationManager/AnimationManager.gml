@@ -93,6 +93,39 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
+     * Returns position of flag based on order
+     * @function get_flag_position
+     * @param {string} name - Name of AnimationFlag
+     * @returns {real} Position of flag based on order
+     */
+    get_flag_position = function(_name) {
+        if !flag_exists(_name) {
+            return undefined;
+        }
+        var _len = get_flags_number();
+        for(var i = 0; i < _len; i++) {
+            if __flags_order__[i] == _name {
+                return i;
+            }
+        }
+    }
+
+    /**
+     * Returns AnimationFlag struct that is at given position
+     * @function get_flag_position
+     * @param {real} index - Position of flag
+     * @returns {struct|undefined} AnimationFlag struct that is at given position
+     * @note Positions are base-0
+     */
+    get_flag_at_position = function(_index) {
+        var _len = get_flags_number();
+        if _index != clamp(_index, 0, _len - 1) {
+            return undefined;
+        }
+        return get_flag(__flags_order__[_index]);
+    }
+
+    /**
      * Returns AnimationFlag struct that represents the active flag
      * @function get_active_flag
      * @returns {struct|undefined} AnimationFlag struct that represents the active flag if it exists
@@ -134,7 +167,7 @@ function AnimationManager(_name, _sprite) constructor {
      * @param msg - Debug message to print in output
      */
     debug_msg = function(_msg) {
-        show_debug_message("<AnimationManager - " + name + "> - " + string(_msg));
+        show_debug_message(repr() + " - " + string(_msg));
     }
 
     /**
@@ -152,5 +185,14 @@ function AnimationManager(_name, _sprite) constructor {
         }
         flags[? active_flag].run();
         return self;
+    }
+
+    /**
+     * Returns printable representation of AnimationManager
+     * @function repr
+     * @returns {string} Printable representation of AnimationManager
+     */
+    repr = function() {
+        return "<AnimationManager - " + name + ">";
     }
 }

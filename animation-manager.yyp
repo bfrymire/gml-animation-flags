@@ -1,10 +1,11 @@
 {
   "resources": [
-    {"id":{"name":"obj_adventurer","path":"objects/obj_adventurer/obj_adventurer.yy",},"order":0,},
     {"id":{"name":"__animation_flag_states","path":"scripts/__animation_flag_states/__animation_flag_states.yy",},"order":2,},
     {"id":{"name":"AnimationFlag","path":"scripts/AnimationFlag/AnimationFlag.yy",},"order":1,},
+    {"id":{"name":"GUIBox","path":"scripts/GUIBox/GUIBox.yy",},"order":0,},
     {"id":{"name":"AnimationManager","path":"scripts/AnimationManager/AnimationManager.yy",},"order":0,},
     {"id":{"name":"spr_adventurer","path":"sprites/spr_adventurer/spr_adventurer.yy",},"order":0,},
+    {"id":{"name":"obj_controller","path":"objects/obj_controller/obj_controller.yy",},"order":1,},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},"order":0,},
   ],
   "Options": [
@@ -32,6 +33,8 @@
     {"folderPath":"folders/AnimationManager.yy","order":5,"resourceVersion":"1.0","name":"AnimationManager","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects.yy","order":9,"resourceVersion":"1.0","name":"Objects","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Rooms.yy","order":10,"resourceVersion":"1.0","name":"Rooms","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts.yy","order":11,"resourceVersion":"1.0","name":"Scripts","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/GUI.yy","order":1,"resourceVersion":"1.0","name":"GUI","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
