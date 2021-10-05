@@ -13,11 +13,11 @@ Animation Manager handles multiple animations for a single sprite by flagging st
 
 ```js
 // create animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add animation flag to manager
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // set active flag
-animation_manager.set_flag("attack_1");
+animator.set_flag("attack_1");
 ```
 
 ## Constructors and Methods
@@ -39,7 +39,7 @@ Constructor that manages multiple animations on a single sprite through the use 
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 ```
 
 &nbsp;
@@ -58,9 +58,9 @@ animation_manager = new AnimationManager("Adventurer", spr_adventurer);
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 ```
 
 &nbsp;
@@ -79,11 +79,11 @@ Finds the `AnimationFlag` from `flags` by `name` and deletes it. If the flag is 
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // remove flag for "attack_1" animation
-animation_manager.remove_flag("attack_1");
+animator.remove_flag("attack_1");
 ```
 
 &nbsp;
@@ -103,13 +103,13 @@ Returns the `AnimationFlag` from `flags`. If the flag is not found, it will send
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // sets active flag to "attack_1"
-animation_manager.set_flag("attack_1");
+animator.set_flag("attack_1");
 // get the active flag and store it in a variable
-var active_flag = animation_manager.get_active_flag();
+var active_flag = animator.get_active_flag();
 ```
 
 &nbsp;
@@ -128,11 +128,11 @@ Finds the `AnimationFlag` from `flags` by `name` and returns it. If the flag is 
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // get flag for "attack_1" animation and store it in a variable
-var attack_1_flag = animation_manager.get_flag("attack_1");
+var attack_1_flag = animator.get_flag("attack_1");
 ```
 
 &nbsp;
@@ -151,13 +151,13 @@ Returns the `AnimationFlag` from `flags` that represents the `active_flag`. If t
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // sets active flag to "attack_1"
-animation_manager.set_flag("attack_1");
+animator.set_flag("attack_1");
 // get the active flag and store it in a variable
-var active_flag = animation_manager.get_active_flag();
+var active_flag = animator.get_active_flag();
 ```
 
 &nbsp;
@@ -178,13 +178,13 @@ If a flag is deleted, the position for flags that were added after the deleted f
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // sets active flag to "attack_1"
-animation_manager.set_flag("attack_1");
+animator.set_flag("attack_1");
 // get the position of "attack_1" flag
-var position = animation_manager.get_flag_position("attack_1"); // 0
+var position = animator.get_flag_position("attack_1"); // 0
 ```
 
 &nbsp;
@@ -204,13 +204,13 @@ Returns `AnimationFlag` struct that is at given position.
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // sets active flag to "attack_1"
-animation_manager.set_flag("attack_1");
+animator.set_flag("attack_1");
 // get the flat at position
-var flag = animation_manager.get_flag_at_position(0); // AnimationFlag<attack_1>
+var flag = animator.get_flag_at_position(0); // AnimationFlag<attack_1>
 ```
 
 &nbsp;
@@ -229,11 +229,11 @@ Checks whether a flag exists with the specified `name` and returns the result.
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 // check if "attack_1" flag exists
-var has_atk_1_anim = animation_manager.flag_exists("attack_1");
+var has_atk_1_anim = animator.flag_exists("attack_1");
 ```
 
 &nbsp;
@@ -264,9 +264,9 @@ Returns the name of the `sprite_index` stored in `sprite`.
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // get sprite name and store it in a variable
-var sprite_name = animation_manager.get_sprite_name();
+var sprite_name = animator.get_sprite_name();
 ```
 
 
@@ -341,9 +341,9 @@ AnimationFlag.speed * room_speed
 
 ```js
 // init animation manager
-animation_manager = new AnimationManager("Adventurer", spr_adventurer);
+animator = new AnimationManager("Adventurer", spr_adventurer);
 // add flag for "attack_1" animation
-animation_manager.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
+animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
 ```
 
 &nbsp;
