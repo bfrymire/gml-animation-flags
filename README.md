@@ -1,6 +1,6 @@
-# GML Animation Flags
+# Animation Flags
 
-Animation Flags handles multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
+Animation Flags manages multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
 
 ## Installation
 
