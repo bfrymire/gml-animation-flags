@@ -1,7 +1,7 @@
 /**
  * Enumerator for AnimationManager
  */
-enum ANIMATION_FLAG_STATES {
+enum ANIMATION_MANAGER_STATES {
     STOP,
     RUN,
     __SIZE,
