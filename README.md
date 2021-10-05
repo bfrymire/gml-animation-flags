@@ -433,7 +433,7 @@ Method used by the library to return a printable representation of the `Animatio
 
 ## Credits
 
- - Adventurer sprite in example created by [@rvros](https://rvros.itch.io/)
+ - Sprite base in example created by [@Dead Revolver](https://deadrevolver.itch.io/pixel-prototype-player-sprites)
  - Color palette in example from [Dracula Theme](https://github.com/dracula/dracula-theme#color-palette)
 
 ## License

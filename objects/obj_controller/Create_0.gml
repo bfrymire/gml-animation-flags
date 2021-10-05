@@ -1,29 +1,30 @@
 // Set up new AnimationManager
-animator = new AnimationManager("Adventurer", spr_adventurer);
-var _spd_default = 0.15;
-var _spd_slow = 0.05;
+animator = new AnimationManager("Player", spr_pixel_platformer_player);
+var _image_speed = 0.15;
 
 // Creating flags
-animator.add_flag(new AnimationFlag("attack_1", 0, 4, _spd_default));
-animator.add_flag(new AnimationFlag("attack_2", 5, 10, _spd_default));
-animator.add_flag(new AnimationFlag("attack_3", 11, 16, _spd_default));
-animator.add_flag(new AnimationFlag("corner_climb", 17, 21, _spd_default));
-animator.add_flag(new AnimationFlag("corner_grab", 22, 25, _spd_slow));
-animator.add_flag(new AnimationFlag("corner_jump", 26, 28, _spd_default));
-animator.add_flag(new AnimationFlag("crouch", 29, 32, _spd_slow));
-animator.add_flag(new AnimationFlag("die", 33, 39, 0.085));
-animator.add_flag(new AnimationFlag("fall", 40, 41, _spd_default));
-animator.add_flag(new AnimationFlag("hurt", 42, 44, _spd_default));
-animator.add_flag(new AnimationFlag("idle_1", 45, 48, _spd_slow));
-animator.add_flag(new AnimationFlag("idle_2", 49, 52, _spd_slow));
-animator.add_flag(new AnimationFlag("jump", 53, 56, _spd_default));
-animator.add_flag(new AnimationFlag("run", 57, 62, _spd_default));
-animator.add_flag(new AnimationFlag("slide", 63, 64, _spd_default));
-animator.add_flag(new AnimationFlag("roll", 65, 68, _spd_default));
-animator.add_flag(new AnimationFlag("stand", 69, 71, _spd_default));
+animator.add_flag(new AnimationFlag("idle_still", 0, 0, _image_speed));
+animator.add_flag(new AnimationFlag("idle", 1, 7, _image_speed));
+animator.add_flag(new AnimationFlag("idle_transition", 8, 9, _image_speed));
+animator.add_flag(new AnimationFlag("run", 10, 17, _image_speed));
+animator.add_flag(new AnimationFlag("jump_rise", 18, 18, _image_speed));
+animator.add_flag(new AnimationFlag("jump_mid", 19, 19, _image_speed));
+animator.add_flag(new AnimationFlag("jump_fall", 20, 20, _image_speed));
+animator.add_flag(new AnimationFlag("land", 21, 22, _image_speed));
+animator.add_flag(new AnimationFlag("front_flip", 23, 36, _image_speed));
+animator.add_flag(new AnimationFlag("crouch", 37, 42, _image_speed));
+animator.add_flag(new AnimationFlag("crawl", 43, 50, _image_speed));
+animator.add_flag(new AnimationFlag("roll", 51, 60, _image_speed));
+animator.add_flag(new AnimationFlag("dash", 61, 64, _image_speed));
+animator.add_flag(new AnimationFlag("slide", 65, 68, _image_speed));
+animator.add_flag(new AnimationFlag("ledge_hand", 69, 69, _image_speed));
+animator.add_flag(new AnimationFlag("ledge_climb", 70, 77, _image_speed));
+animator.add_flag(new AnimationFlag("wall_slide", 78, 83, _image_speed));
+animator.add_flag(new AnimationFlag("knockback", 84, 89, _image_speed));
+animator.add_flag(new AnimationFlag("look_up", 90, 92, _image_speed));
 
 // Sets animation
-animator.set_flag("attack_1");
+animator.set_flag("run");
 
 
 // Setting up GUI
