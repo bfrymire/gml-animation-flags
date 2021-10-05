@@ -1,11 +1,11 @@
-# GML Animation Manager
+# GML Animation Flags
 
-Animation Manager handles multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
+Animation Flags handles multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
 
 ## Installation
 
  1. Upgrade GameMaker Studio 2 to version 2.3.3 or above
- 2. [Download the .yymps file](https://github.com/bfrymire/gml-animation-manager/releases/latest)
+ 2. [Download the .yymps file](https://github.com/bfrymire/gml-animation-flags/releases/latest)
  3. Import the .yymps file into your project from the top menu:
 	- Tools **>** Import Local Package
 
@@ -331,7 +331,7 @@ Method used by the library to return a printable representation of the `Animatio
 |`stop`|real|Subimage index where the animation stops|
 |`speed`|real|Speed animation plays at, can also be negative|
 
-Constructor that marks beginning and end positions of an animation within a sprite. `AnimationFlag` has its own speed set individually upon creation. Since Animation Manager only works with frame-capped games, you can calculate an `AnimationFlag`'s Frames Per Second *(FPS)* as follows:
+Constructor that marks beginning and end positions of an animation within a sprite. `AnimationFlag` has its own speed set individually upon creation. Since Animation Flags only works with frame-capped games, you can calculate an `AnimationFlag`'s Frames Per Second *(FPS)* as follows:
 
 ```js
 AnimationFlag.speed * room_speed
