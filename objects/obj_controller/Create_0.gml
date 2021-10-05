@@ -56,11 +56,11 @@ sprite_number = sprite_get_number(animator.sprite);
 var _rows = floor((((radius * 2) + padding) * sprite_number) / flag_index_box.get_inner_width());
 flag_index_box.y1 -= radius * 2 * (_rows + 1) + padding * 2 * _rows;
 
-// Adventurer sprite box
-adventurer_sprite_box = new GUIBox(flag_index_box.x1, 1, floor(room_width / 2) - 2, flag_index_box.y1 - 3, _margin);
+// Player sprite box
+player_sprite_box = new GUIBox(flag_index_box.x1, 1, floor(room_width / 2) - 2, flag_index_box.y1 - 3, _margin);
 
 // Flag picker box
-flag_picker_box = new GUIBox(adventurer_sprite_box.x2 + 3, adventurer_sprite_box.y1, flag_index_box.x2, adventurer_sprite_box.y2, _margin);
+flag_picker_box = new GUIBox(player_sprite_box.x2 + 3, player_sprite_box.y1, flag_index_box.x2, player_sprite_box.y2, _margin);
 var _box = flag_picker_box;
 _box.title = {
 	text: "Change the active flag using the arrow keys or mouse wheel:",
@@ -80,5 +80,5 @@ var _draw = function() {
 	draw_set_color(_c);
 }
 flag_index_box.set_draw(_draw);
-adventurer_sprite_box.set_draw(_draw);
+player_sprite_box.set_draw(_draw);
 flag_picker_box.set_draw(_draw);
