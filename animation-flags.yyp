@@ -1,6 +1,6 @@
 {
   "resources": [
-    {"id":{"name":"__animation_flag_states","path":"scripts/__animation_flag_states/__animation_flag_states.yy",},"order":2,},
+    {"id":{"name":"__animation_manager_states","path":"scripts/__animation_manager_states/__animation_manager_states.yy",},"order":2,},
     {"id":{"name":"AnimationFlag","path":"scripts/AnimationFlag/AnimationFlag.yy",},"order":1,},
     {"id":{"name":"GUIBox","path":"scripts/GUIBox/GUIBox.yy",},"order":0,},
     {"id":{"name":"AnimationManager","path":"scripts/AnimationManager/AnimationManager.yy",},"order":0,},

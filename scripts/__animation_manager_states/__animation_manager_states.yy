@@ -6,7 +6,7 @@
     "path": "folders/AnimationFlags.yy",
   },
   "resourceVersion": "1.0",
-  "name": "__animation_flag_states",
+  "name": "__animation_manager_states",
   "tags": [],
   "resourceType": "GMScript",
 }

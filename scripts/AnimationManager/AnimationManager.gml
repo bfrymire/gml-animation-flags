@@ -176,7 +176,7 @@ function AnimationManager(_name, _sprite) constructor {
      * @returns {struct} self
      */
     run = function() {
-        if is_undefined(active_flag) || state == ANIMATION_FLAG_STATES.STOP {
+        if is_undefined(active_flag) || state == ANIMATION_MANAGER_STATES.STOP {
             return;
         }
         if !flag_exists(active_flag) {
