@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "AnimationManager",
-    "path": "folders/AnimationManager.yy",
+    "name": "AnimationFlags",
+    "path": "folders/AnimationFlags.yy",
   },
   "resourceVersion": "1.0",
   "name": "AnimationFlag",

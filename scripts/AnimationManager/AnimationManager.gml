@@ -10,7 +10,7 @@ function AnimationManager(_name, _sprite) constructor {
     flags = ds_map_create();
     __flags_order__ = [];
     active_flag = undefined;
-    state = ANIMATION_FLAG_STATES.RUN;
+    state = ANIMATION_MANAGER_STATES.RUN;
 
     /**
      * Adds a flag
@@ -176,7 +176,7 @@ function AnimationManager(_name, _sprite) constructor {
      * @returns {struct} self
      */
     run = function() {
-        if is_undefined(active_flag) || state == ANIMATION_FLAG_STATES.STOP {
+        if is_undefined(active_flag) || state == ANIMATION_MANAGER_STATES.STOP {
             return;
         }
         if !flag_exists(active_flag) {
