@@ -1,17 +1,5 @@
 var _flag = animation_manager.get_active_flag();
 
-/*
-// Setting up text
-var _debug_text ="";
-_debug_text += "active flag: " + animation_manager.active_flag + "\n";
-_debug_text += "flag speed: " + string(_flag.speed) + "\n";
-_debug_text += "flag index: " + string(_flag.get()) + "\n";
-_debug_text += "flag index floor: " + string(floor(_flag.get())) + "\n";
-
-// Drawing text to screen
-draw_text(10, 10, _debug_text);
-*/
-
 // Drawing flag index pips
 var _box = flag_index_box;
 _box.draw();
@@ -37,10 +25,11 @@ repeat(sprite_number) {
 // Draw adventurer sprite GUIBox
 var _box = adventurer_sprite_box;
 _box.draw();
-// var _scale = (_y - _padding * 2) / sprite_get_height(animation_manager.sprite);
 var _scale = min(_box.get_inner_width(), _box.get_inner_height()) / max(sprite_get_width(animation_manager.sprite), sprite_get_height(animation_manager.sprite));
 draw_sprite_ext(animation_manager.sprite, animation_manager.get_active_flag().get(), _box.get_width_mid_point(), _box.y2 - _box.margin, _scale, _scale, 0, c_white, 1);
-draw_text(_box.x1 + _box.margin, _box.y1 + _box.margin, animation_manager.get_active_flag().repr());
+var _details = ANIMATION_MANAGER_NAME + " v." + ANIMATION_MANAGER_VERSION + " " + ANIMATION_MANAGER_DATE + "\n";
+_details += animation_manager.get_active_flag().repr();
+draw_text(_box.x1 + _box.margin, _box.y1 + _box.margin, _details);
 
 // Draw flag picker GUIBox
 var _box = flag_picker_box;

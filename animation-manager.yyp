@@ -4,6 +4,7 @@
     {"id":{"name":"AnimationFlag","path":"scripts/AnimationFlag/AnimationFlag.yy",},"order":1,},
     {"id":{"name":"GUIBox","path":"scripts/GUIBox/GUIBox.yy",},"order":0,},
     {"id":{"name":"AnimationManager","path":"scripts/AnimationManager/AnimationManager.yy",},"order":0,},
+    {"id":{"name":"__animation_manager","path":"scripts/__animation_manager/__animation_manager.yy",},"order":3,},
     {"id":{"name":"spr_adventurer","path":"sprites/spr_adventurer/spr_adventurer.yy",},"order":0,},
     {"id":{"name":"obj_controller","path":"objects/obj_controller/obj_controller.yy",},"order":1,},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},"order":0,},
