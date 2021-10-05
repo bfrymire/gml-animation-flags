@@ -12,12 +12,13 @@ Animation Flags handles multiple animations for a single sprite by flagging star
 ## Setup
 
 ```js
-// create animation manager
+// Set up new AnimationManager
 animator = new AnimationManager("Adventurer", spr_adventurer);
-// add animation flag to manager
-animator.add_flag(new AnimationFlag("attack_1", 0, 4, 0.15));
-// set active flag
-animator.set_flag("attack_1");
+// Add animation flag to manager
+animator.add_flag(new AnimationFlag("idle", 1, 7, 0.15));
+animator.add_flag(new AnimationFlag("run", 10, 17, 0.15));
+// Set active flag
+animator.set_flag("run");
 ```
 
 ## Documentation
@@ -26,15 +27,15 @@ animator.set_flag("attack_1");
 
 ## Limitations
 
+Many of the limitations will be fixed in future updates:
+
 - Does not tell you if the animation ends
-	- *(Will create an event-based broadcaster for this later)*
 - Does not work with delta time
 - Need to manually edit `AnimationFlag` `start` and `stop` indexes if the frames for animations for `AnimationManager` are changed
 - Does not work with versions of GameMaker Studio 2 before v.2.3.3 because of the default parameters
 - No implementation to change `AnimationFlag.speed` on the fly
-	- *(The `speed` variable can be edited directly by calling `AnimationFlag.speed`)*
-- `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) or the Frame Speed from the [Sprite Editor](https://manual.yoyogames.com/The_Asset_Editors/Sprites.htm) into consideration.
-	- *(To change the speed of the sprite, it must be done on the `AnimationFlag` level individually per flag)*
+- `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) or the Frame Speed from the [Sprite Editor](https://manual.yoyogames.com/The_Asset_Editors/Sprites.htm) into consideration
+- Animation subimages need to be in order
 
 ## Credits
 
