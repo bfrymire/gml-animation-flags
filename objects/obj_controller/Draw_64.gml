@@ -22,8 +22,8 @@ repeat(sprite_number) {
     i += 1;
 }
 
-// Draw adventurer sprite GUIBox
-var _box = adventurer_sprite_box;
+// Draw player sprite GUIBox
+var _box = player_sprite_box;
 _box.draw();
 var _scale = min(_box.get_inner_width(), _box.get_inner_height()) / max(sprite_get_width(animator.sprite), sprite_get_height(animator.sprite));
 draw_sprite_ext(animator.sprite, animator.get_active_flag().get(), _box.get_width_mid_point(), _box.y2 - _box.margin, _scale, _scale, 0, c_white, 1);
