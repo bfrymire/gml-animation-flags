@@ -1,17 +1,5 @@
 var _flag = animation_manager.get_active_flag();
 
-/*
-// Setting up text
-var _debug_text ="";
-_debug_text += "active flag: " + animation_manager.active_flag + "\n";
-_debug_text += "flag speed: " + string(_flag.speed) + "\n";
-_debug_text += "flag index: " + string(_flag.get()) + "\n";
-_debug_text += "flag index floor: " + string(floor(_flag.get())) + "\n";
-
-// Drawing text to screen
-draw_text(10, 10, _debug_text);
-*/
-
 // Drawing flag index pips
 var _box = flag_index_box;
 _box.draw();
