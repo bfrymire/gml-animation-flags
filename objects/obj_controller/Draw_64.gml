@@ -1,4 +1,4 @@
-var _flag = animation_manager.get_active_flag();
+var _flag = animator.get_active_flag();
 
 // Drawing flag index pips
 var _box = flag_index_box;
@@ -10,7 +10,7 @@ var _y = _box.y1 + _box.margin + radius;
 var i = 0;
 repeat(sprite_number) {
     // Draw pip
-    var _outlined = floor(animation_manager.get_active_flag().get()) == i ? false : true;
+    var _outlined = floor(animator.get_active_flag().get()) == i ? false : true;
     draw_circle(_x, _y, radius, _outlined);
 
     // Update pip position
@@ -25,10 +25,10 @@ repeat(sprite_number) {
 // Draw adventurer sprite GUIBox
 var _box = adventurer_sprite_box;
 _box.draw();
-var _scale = min(_box.get_inner_width(), _box.get_inner_height()) / max(sprite_get_width(animation_manager.sprite), sprite_get_height(animation_manager.sprite));
-draw_sprite_ext(animation_manager.sprite, animation_manager.get_active_flag().get(), _box.get_width_mid_point(), _box.y2 - _box.margin, _scale, _scale, 0, c_white, 1);
-var _details = ANIMATION_MANAGER_NAME + " v." + ANIMATION_MANAGER_VERSION + " " + ANIMATION_MANAGER_DATE + "\n";
-_details += animation_manager.get_active_flag().repr();
+var _scale = min(_box.get_inner_width(), _box.get_inner_height()) / max(sprite_get_width(animator.sprite), sprite_get_height(animator.sprite));
+draw_sprite_ext(animator.sprite, animator.get_active_flag().get(), _box.get_width_mid_point(), _box.y2 - _box.margin, _scale, _scale, 0, c_white, 1);
+var _details = ANIMATION_FLAGS_NAME + " v." + ANIMATION_FLAGS_VERSION + " " + ANIMATION_FLAGS_DATE + "\n";
+_details += animator.get_active_flag().repr();
 draw_text(_box.x1 + _box.margin, _box.y1 + _box.margin, _details);
 
 // Draw flag picker GUIBox
@@ -41,7 +41,7 @@ draw_text_ext(_box.x1 + _box.margin, _box.y1 + _box.margin, _box.title.text, -1,
 
 // Drawing flag picker flags
 var _h = string_height("M");
-var _len = animation_manager.get_flags_number();
+var _len = animator.get_flags_number();
 draw_set_halign(fa_middle);
 for(var i = 0; i < _len; i++) {
     var _y = _box.get_height_mid_point() - _box.offset + _h * i;
@@ -52,8 +52,8 @@ for(var i = 0; i < _len; i++) {
     }
 
     // Highlight name if it's the active flag name
-    var _name = animation_manager.__flags_order__[i];
-    if animation_manager.active_flag == _name {
+    var _name = animator.__flags_order__[i];
+    if animator.active_flag == _name {
         draw_set_color(colors.yellow);
         _name = ">  " + _name + "  <"
     } else {
