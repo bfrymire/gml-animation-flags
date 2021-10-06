@@ -20,7 +20,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param {struct} flag - AnimationFlag to add to flags
      * @param [boolean=false] replace - Overwrites AnimationFlag with the same name if it exists in flags
      */
-    add_flag = function(_flag, _replace=false) {
+    static add_flag = function(_flag, _replace=false) {
         if flag_exists(_flag.name) && !_replace {
             debug_msg("flag with name " + _flag.name + " already exists.");
             return;
@@ -35,7 +35,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function remove_flag
      * @param {string} name - Name of AnimationFlag to remove from flags
      */
-    remove_flag = function(_name) {
+    static remove_flag = function(_name) {
         if !flag_exists(_name) {
             debug_msg("flag with name " + _name + " does not exist.");
             return;
@@ -59,7 +59,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param [boolean=true] reset - AnimationFlag to reset its index to start
      * @returns {struct} self
      */
-    set_flag = function(_name, _reset=true) {
+    static set_flag = function(_name, _reset=true) {
         if flag_exists(_name) {
             active_flag = _name;
             if _reset {
@@ -77,7 +77,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param {string} name - Name of AnimationFlag
      * @returns {struct|undefined} AnimationFlag that represents the name if it exists
      */
-    get_flag = function(_name) {
+    static get_flag = function(_name) {
         if !flag_exists(_name) {
             debug_msg("flag with name " + _name + " does not exists.");
             return undefined;
@@ -90,7 +90,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function get_flags_number
      * @returns {real} Number of flags
      */
-    get_flags_number = function() {
+    static get_flags_number = function() {
         return ds_map_size(flags);
     }
 
@@ -100,7 +100,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param {string} name - Name of AnimationFlag
      * @returns {real} Position of flag based on order
      */
-    get_flag_position = function(_name) {
+    static get_flag_position = function(_name) {
         if !flag_exists(_name) {
             return undefined;
         }
@@ -119,7 +119,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @returns {struct|undefined} AnimationFlag struct that is at given position
      * @note Positions are base-0
      */
-    get_flag_at_position = function(_index) {
+    static get_flag_at_position = function(_index) {
         var _flags_number = get_flags_number();
         if _index != clamp(_index, 0, _flags_number - 1) {
             return undefined;
@@ -132,7 +132,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function get_active_flag
      * @returns {struct|undefined} AnimationFlag struct that represents the active flag if it exists
      */
-    get_active_flag = function() {
+    static get_active_flag = function() {
         return get_flag(active_flag);
     }
 
@@ -141,7 +141,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function flag_exists
      * @param {string} name - Name of AnimationFlag to check in flags
      */
-    flag_exists = function(_name) {
+    static flag_exists = function(_name) {
         return ds_map_exists(flags, _name);
     }
 
@@ -150,7 +150,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function get_sprite_name
      * @returns {string} Name of sprite
      */
-    get_sprite_name = function() {
+    static get_sprite_name = function() {
         return sprite_get_name(sprite);
     }
 
@@ -173,7 +173,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function destroy
      * @note Run this in the Clean Up Event to prevent data leaks
      */
-    destroy = function() {
+    static destroy = function() {
         ds_map_destroy(flags);
     }
 
@@ -182,7 +182,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function debug_msg
      * @param {*} msg - Debug message to print in output
      */
-    debug_msg = function(_msg) {
+    static debug_msg = function(_msg) {
         show_debug_message(repr() + " - " + string(_msg));
     }
 
@@ -191,7 +191,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function run
      * @returns {struct} self
      */
-    run = function() {
+    static run = function() {
         if is_undefined(active_flag) || state == ANIMATION_MANAGER_STATES.STOP {
             return self;
         }
@@ -208,7 +208,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function repr
      * @returns {string} Printable representation of AnimationManager
      */
-    repr = function() {
+    static repr = function() {
         return "<AnimationManager - " + name + ">";
     }
 }
