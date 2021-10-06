@@ -1,6 +1,8 @@
 # Animation Flags
 
-![Animation Flags Logo](LOGO.png)
+<p align="center" width="100%">
+  <img src="./LOGO.png" alt="Animation Flags Logo">
+</p>
 
 Animation Flags manages multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
 
