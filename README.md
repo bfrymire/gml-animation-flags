@@ -27,6 +27,8 @@ animator.add_flag(new AnimationFlag("run", 10, 17, 0.15));
 animator.set_flag("run");
 ```
 
+[View a more detailed explanation Setup.](https://github.com/bfrymire/gml-animation-flags/wiki/Setup)
+
 ## Documentation
 
 [Go to the Wiki](https://github.com/bfrymire/gml-animation-flags/wiki) to view the documentation.
