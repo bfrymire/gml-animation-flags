@@ -1,5 +1,5 @@
-// Set up new AnimationManager
-animator = new AnimationManager("Player", spr_pixel_platformer_player);
+// Set up new AnimationManager using delta timing
+animator = new AnimationManager("Player", spr_pixel_platformer_player, true);
 var _image_speed = 0.15;
 
 // Creating flags

@@ -48,7 +48,11 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @returns {struct} self
      */
     run = function() {
-        index += speed;
+        if !is_undefined(parent) && parent.use_delta_time {
+            index += speed * delta_time * ANIMATION_FLAGS_TARGET_FPS * ANIMATION_FLAGS_DELTA_TIME_MS;
+        } else {
+            index += speed;
+        }
         index = __modulo__(index - start, get_flag_diff()) + start;
         return self;
     }
@@ -72,7 +76,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @returns {string} Printable representation of AnimationFlag
      */
     repr = function() {
-        return "<AnimationFlag - " + name + " " + string(floor(index)) + ">";
+        return "<AnimationFlag - " + name + " " + string(floor(get())) + ">";
     }
 
 }
