@@ -38,9 +38,7 @@ animator.set_flag("run");
 Many of the limitations will be fixed in future updates:
 
 - Does not tell you if the animation ends
-- Does not work with delta time
 - Need to manually edit `AnimationFlag` `start` and `stop` indexes if the frames for animations for `AnimationManager` are changed
-- Does not work with versions of GameMaker Studio 2 before v.2.3.3 because of the default parameters
 - No implementation to change `AnimationFlag.speed` on the fly
 - `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) or the Frame Speed from the [Sprite Editor](https://manual.yoyogames.com/The_Asset_Editors/Sprites.htm) into consideration
 - Animation subimages need to be in order

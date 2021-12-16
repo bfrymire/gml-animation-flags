@@ -3,10 +3,12 @@
  * @constructor AnimationManager
  * @param {string} name - Name of AnimationManager
  * @param {real} sprite - Sprite index of animation sprite
+ * @param [boolean=ANIMATION_FLAGS_DELTA_TIME] use_delta_time - Whether the animations should calculate using delta time
  */
-function AnimationManager(_name, _sprite) constructor {
+function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_TIME) constructor {
     name = _name;
     sprite = _sprite
+    use_delta_time = _use_delta_time;
     flags = ds_map_create();
     __flags_order__ = [];
     active_flag = undefined;
@@ -16,7 +18,7 @@ function AnimationManager(_name, _sprite) constructor {
      * Adds a flag
      * @function add_flag
      * @param {struct} flag - AnimationFlag to add to flags
-     * @param {boolean} [replace=false] - Overwrites AnimationFlag with the same name if it exists in flags
+     * @param [boolean=false] replace - Overwrites AnimationFlag with the same name if it exists in flags
      */
     add_flag = function(_flag, _replace=false) {
         if flag_exists(_flag.name) && !_replace {
@@ -40,9 +42,9 @@ function AnimationManager(_name, _sprite) constructor {
         }
         flags[? _name].parent = undefined;
         ds_map_delete(flags, _name);
-        var _len = get_flags_number();
+        var _flags_number = get_flags_number();
         // Remove flag name from flags order
-        for(var i = 0; i < _len; i++) {
+        for(var i = 0; i < _flags_number; i++) {
             if __flags_order__[i] == _name {
                 array_delete(__flags_order__, i, 1);
                 break;
@@ -54,7 +56,7 @@ function AnimationManager(_name, _sprite) constructor {
      * Sets active flag to name
      * @function set_flag
      * @param {string} name - Name of AnimationFlag to set as active flag
-     * @param {boolean} [reset=true] - AnimationFlag to reset its index to start
+     * @param [boolean=true] reset - AnimationFlag to reset its index to start
      * @returns {struct} self
      */
     set_flag = function(_name, _reset=true) {
@@ -102,8 +104,8 @@ function AnimationManager(_name, _sprite) constructor {
         if !flag_exists(_name) {
             return undefined;
         }
-        var _len = get_flags_number();
-        for(var i = 0; i < _len; i++) {
+        var _flags_number = get_flags_number();
+        for(var i = 0; i < _flags_number; i++) {
             if __flags_order__[i] == _name {
                 return i;
             }
@@ -118,8 +120,8 @@ function AnimationManager(_name, _sprite) constructor {
      * @note Positions are base-0
      */
     get_flag_at_position = function(_index) {
-        var _len = get_flags_number();
-        if _index != clamp(_index, 0, _len - 1) {
+        var _flags_number = get_flags_number();
+        if _index != clamp(_index, 0, _flags_number - 1) {
             return undefined;
         }
         return get_flag(__flags_order__[_index]);
@@ -153,6 +155,20 @@ function AnimationManager(_name, _sprite) constructor {
     }
 
     /**
+     * Sets whether flags added to manager should use delta timing for calculations
+     * @function set_delta_time
+     * @param {boolean} use_delta_time - Whether flags added use delta timing
+     * @returns {struct} self
+     */
+    set_delta_time = function(_use_delta_time) {
+        if !is_bool(_use_delta_time) {
+            throw("AnimationFlag.set_delta_time() argument 0 expected a boolean, received " + typeof(_use_delta_time) + ".");
+        }
+        use_delta_time = _use_delta_time;
+        return self;
+    }
+
+    /**
      * Cleans up data structures when you no longer need the manager
      * @function destroy
      * @note Run this in the Clean Up Event to prevent data leaks
@@ -164,7 +180,7 @@ function AnimationManager(_name, _sprite) constructor {
     /**
      * Debug message that prepends manager name and prints in output
      * @function debug_msg
-     * @param msg - Debug message to print in output
+     * @param {*} msg - Debug message to print in output
      */
     debug_msg = function(_msg) {
         show_debug_message(repr() + " - " + string(_msg));
@@ -177,13 +193,13 @@ function AnimationManager(_name, _sprite) constructor {
      */
     run = function() {
         if is_undefined(active_flag) || state == ANIMATION_MANAGER_STATES.STOP {
-            return;
+            return self;
         }
         if !flag_exists(active_flag) {
-            debug_msg("flag with name " + active_flag.name + " does not exist.");
-            return;
+            throw("AnimationManager.run() flag with name \"" + active_flag.name + "\" does not exist.");
+            return self;
         }
-        flags[? active_flag].run();
+        get_active_flag().run();
         return self;
     }
 
