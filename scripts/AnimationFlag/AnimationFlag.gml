@@ -19,7 +19,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @function get_flag_diff
      * @returns {real} Difference between start and stop indexes plus 1
      */
-    get_flag_diff = function() {
+    static get_flag_diff = function() {
         return (stop - start) + 1;
     }
 
@@ -28,7 +28,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @function get
      * @returns {real} Index of flag
      */
-    get = function() {
+    static get = function() {
         return index;
     }
 
@@ -37,7 +37,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @function reset
      * @returns {struct} self
      */
-    reset = function() {
+    static reset = function() {
         index = start;
         return self;
     }
@@ -47,7 +47,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @function run
      * @returns {struct} self
      */
-    run = function() {
+    static run = function() {
         if !is_undefined(parent) && parent.use_delta_time {
             index += speed * delta_time * ANIMATION_FLAGS_TARGET_FPS * ANIMATION_FLAGS_DELTA_TIME_MS;
         } else {
@@ -64,9 +64,8 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @param {real} number2
      * @returns {real} Remainder of a division between number1 and number2
      */
-    __modulo__ = function(_num1, _num2) {
+    static __modulo__ = function(_num1, _num2) {
         var _mod = _num1 % _num2;
-        show_debug_message(_mod);
         if (_mod < 0) _mod += abs(_num2);
         return _mod;
     }
@@ -76,7 +75,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @function repr
      * @returns {string} Printable representation of AnimationFlag
      */
-    repr = function() {
+    static repr = function() {
         return "<AnimationFlag - " + name + " " + string(floor(get())) + ">";
     }
 
