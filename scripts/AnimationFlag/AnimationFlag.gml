@@ -66,6 +66,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      */
     __modulo__ = function(_num1, _num2) {
         var _mod = _num1 % _num2;
+        show_debug_message(_mod);
         if (_mod < 0) _mod += abs(_num2);
         return _mod;
     }
