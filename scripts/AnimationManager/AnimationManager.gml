@@ -3,7 +3,7 @@
  * @constructor AnimationManager
  * @param {string} name - Name of AnimationManager
  * @param {real} sprite - Sprite index of animation sprite
- * @param [boolean=ANIMATION_FLAGS_DELTA_TIME] use_delta_time - Whether the animations should calculate using delta time
+ * @param [boolean=ANIMATION_FLAGS_DELTA_TIME] use_delta_time - Whether child flags use delta time
  */
 function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_TIME) constructor {
     name = _name;
@@ -155,9 +155,9 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     }
 
     /**
-     * Sets whether flags added to manager should use delta timing for calculations
+     * Sets whether flags added to manager should use delta time for calculations
      * @function set_delta_time
-     * @param {boolean} use_delta_time - Whether flags added use delta timing
+     * @param {boolean} use_delta_time - Whether child flags use delta time
      * @returns {struct} self
      */
     set_delta_time = function(_use_delta_time) {
