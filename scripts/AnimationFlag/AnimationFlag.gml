@@ -47,7 +47,7 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @function run
      * @returns {struct} self
      */
-    run = function() {
+    static run = function() {
         if !is_undefined(parent) && parent.use_delta_time {
             index += speed * delta_time * ANIMATION_FLAGS_TARGET_FPS * ANIMATION_FLAGS_DELTA_TIME_MS;
         } else {

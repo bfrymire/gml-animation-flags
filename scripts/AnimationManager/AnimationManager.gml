@@ -160,7 +160,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param {boolean} use_delta_time - Whether child flags use delta time
      * @returns {struct} self
      */
-    set_delta_time = function(_use_delta_time) {
+    static set_delta_time = function(_use_delta_time) {
         if !is_bool(_use_delta_time) {
             throw("AnimationFlag.set_delta_time() argument 0 expected a boolean, received " + typeof(_use_delta_time) + ".");
         }
