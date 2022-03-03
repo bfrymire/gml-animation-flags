@@ -9,7 +9,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     name = _name;
     sprite = _sprite
     use_delta_time = _use_delta_time;
-    flags = ds_map_create();
+    flags = {};
     __flags_order__ = [];
     active_flag = undefined;
     state = ANIMATION_MANAGER_STATES.RUN;
@@ -25,7 +25,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             debug_msg("flag with name " + _flag.name + " already exists.");
             return;
         }
-        flags[? _flag.name] = _flag;
+        flags[$ _flag.name] = _flag;
         array_push(__flags_order__, _flag.name);
         _flag.parent = self;
     }
@@ -40,7 +40,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             debug_msg("flag with name " + _name + " does not exist.");
             return;
         }
-        flags[? _name].parent = undefined;
+        flags[$ _name].parent = undefined;
         ds_map_delete(flags, _name);
         var _flags_number = get_flags_number();
         // Remove flag name from flags order
@@ -82,7 +82,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             debug_msg("flag with name " + _name + " does not exists.");
             return undefined;
         }
-        return flags[? _name];
+        return flags[$ _name];
     }
 
     /**
@@ -91,7 +91,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @returns {real} Number of flags
      */
     static get_flags_number = function() {
-        return ds_map_size(flags);
+        return variable_struct_names_count(flags);
     }
 
     /**
@@ -142,7 +142,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param {string} name - Name of AnimationFlag to check in flags
      */
     static flag_exists = function(_name) {
-        return ds_map_exists(flags, _name);
+        return variable_struct_exists(flags, _name);
     }
 
     /**
