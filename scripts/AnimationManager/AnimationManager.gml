@@ -169,15 +169,6 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     }
 
     /**
-     * Cleans up data structures when you no longer need the manager
-     * @function destroy
-     * @note Run this in the Clean Up Event to prevent data leaks
-     */
-    static destroy = function() {
-        ds_map_destroy(flags);
-    }
-
-    /**
      * Debug message that prepends manager name and prints in output
      * @function debug_msg
      * @param {*} msg - Debug message to print in output
