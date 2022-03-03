@@ -23,6 +23,15 @@ animation_flag_variables_on_init_suite.setUp(function() {
 });
 runner.discover(animation_flag_variables_on_init_suite, "test_animation_flag_variables_on_init_");
 
+// AnimationManager flag methods test suite
+test_animation_manager_getters_suite = new TestSuite("animation_manager_flag_getters_suite");
+runner.addTestSuite(test_animation_manager_getters_suite);
+test_animation_manager_getters_suite.setUp(function() {
+    manager = new AnimationManager("test manager", spr_pixel_platformer_player);
+    flag = new AnimationFlag("test flag", 0, 9, 0.15);
+});
+runner.discover(test_animation_manager_getters_suite, "test_animation_manager_get_");
+
 
 // Run tests
 runner.run();
