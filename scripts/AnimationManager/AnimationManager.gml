@@ -37,7 +37,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      */
     static remove_flag = function(_name) {
         if !flag_exists(_name) {
-            debug_msg("flag with name " + _name + " does not exist.");
+            debug_msg("flag with name \"" + _name + "\" does not exist.");
             return;
         }
         flags[? _name].parent = undefined;
@@ -66,7 +66,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
                 get_active_flag().reset();
             }
         } else {
-            debug_msg("flag with name " + _name + " does not exist.");
+            debug_msg("flag with name \"" + _name + "\" does not exist.");
         }
         return self;
     }
@@ -79,7 +79,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      */
     static get_flag = function(_name) {
         if !flag_exists(_name) {
-            debug_msg("flag with name " + _name + " does not exist.");
+            debug_msg("flag with name \"" + _name + "\" does not exist.");
             return undefined;
         }
         return flags[? _name];
