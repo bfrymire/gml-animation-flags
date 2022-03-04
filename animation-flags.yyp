@@ -15,6 +15,7 @@
     {"id":{"name":"AnimationManager","path":"scripts/AnimationManager/AnimationManager.yy",},"order":0,},
     {"id":{"name":"scr_animation_manager_variables_on_init","path":"scripts/scr_animation_manager_variables_on_init/scr_animation_manager_variables_on_init.yy",},"order":0,},
     {"id":{"name":"__animation_flags_macros","path":"scripts/__animation_flags_macros/__animation_flags_macros.yy",},"order":3,},
+    {"id":{"name":"scr_animation_manager_setters","path":"scripts/scr_animation_manager_setters/scr_animation_manager_setters.yy",},"order":3,},
     {"id":{"name":"crispyGetTime","path":"scripts/crispyGetTime/crispyGetTime.yy",},"order":4,},
     {"id":{"name":"crispyGetTimeDiff","path":"scripts/crispyGetTimeDiff/crispyGetTimeDiff.yy",},"order":5,},
     {"id":{"name":"scr_animation_manager_getters","path":"scripts/scr_animation_manager_getters/scr_animation_manager_getters.yy",},"order":2,},
