@@ -119,6 +119,11 @@ function test_animationFlagModulo_withNegative0Point15And1_shouldBe0Point85() {
     assertEqual(_test_flag.__modulo__(-0.15, 1), 0.85, "Expected test_flag.__modulo__() to be 0.85.");
 }
 
+function test_animationFlagModulo_with5and5_shouldBe0() {
+    var _test_flag = parent.test_flag;
+    assertEqual(_test_flag.__modulo__(5, 5), 0, "Expected test_flag.__modulo__() to be 0.");
+}
+
 /**
  * Testing AnimationFlag repr
  */
