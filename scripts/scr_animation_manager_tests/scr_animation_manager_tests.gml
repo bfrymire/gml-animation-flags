@@ -343,15 +343,6 @@ function test_animationManagerFlags_withDestroy_shouldBeUndefined() {
 /**
  * Testing AnimationManager run
  */
-function test_animationManagerGetActiveFlagGet_withStateRun_shouldBe0Point15() {
-    var _animator = parent.animator;
-    var _test_flag = parent.test_flag;
-    _animator.add_flag(_test_flag);
-    _animator.set_flag(_test_flag.name);
-    _animator.run();
-    assertEqual(_animator.get_active_flag().get(), 0.15, "Expected animator.get_active_flag().get() to be 0.15.");
-}
-
 function test_animationManagerGetActiveFlagGet_withStateStop_shouldBe0() {
     var _animator = parent.animator;
     var _test_flag = parent.test_flag;
@@ -360,4 +351,13 @@ function test_animationManagerGetActiveFlagGet_withStateStop_shouldBe0() {
     _animator.set_flag(_test_flag.name);
     _animator.run();
     assertEqual(_animator.get_active_flag().get(), 0, "Expected animator.get_active_flag().get() to be 0.");
+}
+
+function test_animationManagerGetActiveFlagGet_withUseDeltaTimeFalseAndStateRun_shouldBe0Point15() {
+    var _animator = parent.animator;
+    var _test_flag = parent.test_flag;
+    _animator.add_flag(_test_flag);
+    _animator.set_flag(_test_flag.name);
+    _animator.run();
+    assertEqual(_animator.get_active_flag().get(), 0.15, "Expected animator.get_active_flag().get() to be 0.15.");
 }
