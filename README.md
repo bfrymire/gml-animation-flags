@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-  <img src="./LOGO.png" alt="Animation Flags Logo" style="image-rendering:pixelated;">
+  <img src="./LOGO.png" alt="Animation Flags Logo">
 </p>
 
 # Animation Flags
