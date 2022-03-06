@@ -48,7 +48,10 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @returns {struct} self
      */
     static run = function() {
-        if !is_undefined(parent) && parent.use_delta_time {
+        if is_undefined(parent) {
+            return self;
+        }
+        if parent.use_delta_time {
             index += speed * delta_time * ANIMATION_FLAGS_TARGET_FPS * ANIMATION_FLAGS_DELTA_TIME_MS;
         } else {
             index += speed;
@@ -65,8 +68,13 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @returns {real} Remainder of a division between number1 and number2
      */
     static __modulo__ = function(_num1, _num2) {
+        if _num1 == 0 && _num2 == 0 {
+            return 0;
+        }
         var _mod = _num1 % _num2;
-        if (_mod < 0) _mod += abs(_num2);
+        if _mod < 0 {
+            _mod += abs(_num2);
+        }
         return _mod;
     }
 
