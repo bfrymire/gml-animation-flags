@@ -7,7 +7,7 @@
  */
 function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_TIME) constructor {
     name = _name;
-    sprite = _sprite
+    sprite = _sprite;
     use_delta_time = _use_delta_time;
     flags = ds_map_create();
     __flags_order__ = [];
