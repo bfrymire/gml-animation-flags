@@ -2,15 +2,18 @@
  * Testing AnimationManager variables on init
  */
 function test_animationManagerName_withStringTestManagerPassed_shouldBeStringTestManager() {
-    assertEqual(parent.animator.name, "test animator", "Expected animator.name to be \"test animator\".");
+    var _animator = parent.animator;
+    assertEqual(_animator.name, "test animator", "Expected animator.name to be \"test animator\".");
 }
 
 function test_animationManagerSprite_withSpriteIndexPassed_shouldBeSpriteIndex() {
-    assertEqual(parent.animator.sprite, spr_pixel_platformer_player, "Expected animator.sprite to be the sprite_index spr_pixel_platformer_player (id: " + string(spr_pixel_platformer_player) + ").");
+    var _animator = parent.animator;
+    assertEqual(_animator.sprite, spr_pixel_platformer_player, "Expected animator.sprite to be the sprite_index spr_pixel_platformer_player (id: " + string(spr_pixel_platformer_player) + ").");
 }
 
 function test_animationManagerUseDeltaTime_withUseDeltaTimeOmitted_shouldbeFalse() {
-    assertFalse(parent.animator.use_delta_time, "Expected animator.use_delta_time to be false.");
+    var _animator = parent.animator;
+    assertFalse(_animator.use_delta_time, "Expected animator.use_delta_time to be false.");
 }
 
 function test_animationManagerUseDeltaTime_withUseDeltaTimeFalse_shouldBeFalse() {
@@ -24,24 +27,28 @@ function test_animationManagerUseDeltaTime_withUseDeltaTimeTrue_shouldBeTrue() {
 }
 
 function test_animationManagerFlags_withInit_shouldBeNumberPointerToDsMap() {
-    // Checking for real number because AnimationManager.flags is a DS map
-    assertEqual(typeof(parent.animator.flags), "number", "Expected animator.flags to be a real number.");
+    var _animator = parent.animator;
+    assertTrue(is_struct(_animator.flags), "Expected is_struct(animator.flags) to be true.");
 }
 
 function test_animationManagerFlagsOrder_withInit_shouldBeAnArray() {
-    assertTrue(is_array(parent.animator.__flags_order__), "Expected animator.__flags__order__ to be an array.");
+    var _animator = parent.animator;
+    assertTrue(is_array(_animator.__flags_order__), "Expected animator.__flags__order__ to be an array.");
 }
 
 function test_animationManagerFlagsOrder_withInit_shouldBeEmpty() {
-    assertEqual(array_length(parent.animator.__flags_order__), 0, "Expected animator.__flags__order__ array to have a length of 0.");
+    var _animator = parent.animator;
+    assertEqual(array_length(_animator.__flags_order__), 0, "Expected animator.__flags__order__ array to have a length of 0.");
 }
 
 function test_animationManagerActiveFlag_withInit_shouldBeUndefined() {
-    assertIsUndefined(parent.animator.active_flag, "Expected animator.active_flag to be undefined.");
+    var _animator = parent.animator;
+    assertIsUndefined(_animator.active_flag, "Expected animator.active_flag to be undefined.");
 }
 
 function test_animationManagerState_withInit_shouldBeRun() {
-    assertEqual(parent.animator.state, ANIMATION_MANAGER_STATES.RUN, "Expected animator.state to be ANIMATION_MANAGER_STATES.RUN (" + string(ANIMATION_MANAGER_STATES.RUN) + ").");
+    var _animator = parent.animator;
+    assertEqual(_animator.state, ANIMATION_MANAGER_STATES.RUN, "Expected animator.state to be ANIMATION_MANAGER_STATES.RUN (" + string(ANIMATION_MANAGER_STATES.RUN) + ").");
 }
 
 
@@ -52,21 +59,21 @@ function test_animationManagerFlagsSize_withAddFlag_shouldBe1() {
     var _animator = parent.animator;
     var _test_flag = parent.test_flag;
     _animator.add_flag(_test_flag);
-    assertEqual(ds_map_size(_animator.flags), 1, "Expected animator.flags size to be 1.");
+    assertEqual(variable_struct_names_count(_animator.flags), 1, "Expected animator.flags size to be 1.");
 }
 
 function test_animationManagerFlags_withAddFlag_shouldHaveKeyTestFlag() {
     var _animator = parent.animator;
     var _test_flag = parent.test_flag;
     _animator.add_flag(_test_flag);
-    assertTrue(ds_map_exists(_animator.flags, _test_flag.name), "Expected animator.flags to have the key \"test flag\".");
+    assertTrue(variable_struct_exists(_animator.flags, _test_flag.name), "Expected animator.flags to have the key \"test flag\".");
 }
 
 function test_animationManagerFlagsTestFlagKey_withAddFlag_shouldBeTestFlag() {
     var _animator = parent.animator;
     var _test_flag = parent.test_flag;
     _animator.add_flag(_test_flag);
-    assertEqual(_animator.flags[? _test_flag.name], _test_flag, "Expected animator.flags[? \"test flag\"] to be test_flag.");
+    assertEqual(_animator.flags[$ _test_flag.name], _test_flag, "Expected animator.flags[$ \"test flag\"] to be test_flag.");
 }
 
 function test_animationManagerFlagsOrderAtPosition0_withAddFlag_shouldBeTestFlagName() {
@@ -99,7 +106,15 @@ function test_animationManagerFlagsSize_withRemoveFlag_shouldBe0() {
     var _test_flag = parent.test_flag;
     _animator.add_flag(_test_flag);
     _animator.remove_flag(_test_flag.name);
-    assertEqual(ds_map_size(_animator.flags), 0, "Expected animator.flags size to be 0.");
+    assertEqual(variable_struct_names_count(_animator.flags), 0, "Expected animator.flags size to be 0.");
+}
+
+function test_animationManagerFlags_withRemoveFlag_shouldNotFindTestFlagNameInFlags() {
+    var _animator = parent.animator;
+    var _test_flag = parent.test_flag;
+    _animator.add_flag(_test_flag);
+    _animator.remove_flag(_test_flag.name);
+    assertFalse(variable_struct_exists(_animator.flags, _test_flag.name), "Expected variable_struct_exists(animator.flags, test_flag.name) to be false.");
 }
 
 function test_animationManagerFlagsOrderLength_withRemoveFlag_shouldBe0() {
@@ -327,16 +342,6 @@ function test_animationManagerSetDeltaTime_withFalsePassed_shouldBeFalse() {
 function test_animationManagerRepr_withNameAsString_shouldBeString() {
     var _animator = parent.animator;
     assertEqual(_animator.repr(), "<AnimationManager - test animator>", "Expected animator.repr() to be \"<AnimationManager - test animator>\".");
-}
-
-
-/**
- * Testing AnimationManager destroy
- */
-function test_animationManagerFlags_withDestroy_shouldBeUndefined() {
-    var _animator = parent.animator;
-    _animator.destroy();
-    assertIsUndefined(_animator.flags, "Expected animator.flags to be undefined.");
 }
 
 

@@ -9,7 +9,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     name = _name;
     sprite = _sprite;
     use_delta_time = _use_delta_time;
-    flags = ds_map_create();
+    flags = {};
     __flags_order__ = [];
     active_flag = undefined;
     state = ANIMATION_MANAGER_STATES.RUN;
@@ -26,7 +26,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             debug_msg("flag with name " + _flag.name + " already exists.");
             return self;
         }
-        flags[? _flag.name] = _flag;
+        flags[$ _flag.name] = _flag;
         array_push(__flags_order__, _flag.name);
         _flag.parent = self;
         return self;
@@ -43,7 +43,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             debug_msg("flag with name \"" + _name + "\" does not exist.");
             return self;
         }
-        flags[? _name].parent = undefined;
+        flags[$ _name].parent = undefined;
         var _flags_number = get_flags_number();
         // Remove flag name from flags order
         for(var i = 0; i < _flags_number; i++) {
@@ -52,7 +52,23 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
                 break;
             }
         }
-        ds_map_delete(flags, _name);
+        recreate_flags_from_flags_order();
+        return self;
+    }
+
+    /**
+     * Creates a new flags struct based on names in flags order
+     * @function recreate_flags_from_flags_order
+     * @returns {struct} self
+     */
+    static recreate_flags_from_flags_order = function() {
+        var _destination = {};
+        var _len = array_length(__flags_order__);
+        for(var i = 0; i < _len; i++) {
+            var _name = __flags_order__[i];
+            _destination[$ _name] = flags[$ _name];
+        }
+        flags = _destination;
         return self;
     }
 
@@ -90,7 +106,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             debug_msg("flag with name \"" + string(_name) + "\" does not exist.");
             return undefined;
         }
-        return flags[? _name];
+        return flags[$ _name];
     }
 
     /**
@@ -99,7 +115,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @returns {real} Number of flags
      */
     static get_flags_number = function() {
-        return ds_map_size(flags);
+        return variable_struct_names_count(flags);
     }
 
     /**
@@ -151,7 +167,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param {string} name - Name of AnimationFlag to check in flags
      */
     static flag_exists = function(_name) {
-        return ds_map_exists(flags, _name);
+        return variable_struct_exists(flags, _name);
     }
 
     /**
@@ -177,18 +193,6 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             throw("AnimationFlag.set_delta_time() argument 0 expected a boolean, received " + typeof(_use_delta_time) + ".");
         }
         use_delta_time = _use_delta_time;
-        return self;
-    }
-
-    /**
-     * Cleans up data structures when you no longer need the manager
-     * @function destroy
-     * @returns {struct} self
-     * @NOTE: Run this in the Clean Up Event to prevent data leaks
-     */
-    static destroy = function() {
-        ds_map_destroy(flags);
-        flags = undefined;
         return self;
     }
 
