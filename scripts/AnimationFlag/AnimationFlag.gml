@@ -68,8 +68,13 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
      * @returns {real} Remainder of a division between number1 and number2
      */
     static __modulo__ = function(_num1, _num2) {
+        if _num1 == 0 && _num2 == 0 {
+            return 0;
+        }
         var _mod = _num1 % _num2;
-        if (_mod < 0) _mod += abs(_num2);
+        if _mod < 0 {
+            _mod += abs(_num2);
+        }
         return _mod;
     }
 
