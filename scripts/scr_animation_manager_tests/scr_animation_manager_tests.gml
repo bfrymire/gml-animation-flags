@@ -228,7 +228,7 @@ function test_animationManagerGetFlagPosition_withFlagRemove_shouldBeUndefined()
 
 
 /**
- * Testing AnimationManager get_flag_position
+ * Testing AnimationManager get_flag_at_position
  */
 function test_animationManagerGetFlagPosition_withNoFlagAdded_shouldBeUndefined() {
     var _manager = parent.manager;
@@ -274,6 +274,23 @@ function test_animationManagerGetActiveFlag_withSetFlag_shouldBeTestFlag() {
     assertEqual(_manager.get_active_flag(), _test_flag, "Expected get_active_flag() to be \"test flag\".");
 }
 
+
+/**
+ * Testing AnimationManager flag_exists
+ */
+function test_animationManagerFlagExists_withFlagNotAdded_shouldBeFalse() {
+    var _manager = parent.manager;
+    assertFalse(_manager.flag_exists("flag not added"), "Expected manager.flag_exists() to be false.");
+}
+
+function test_animationManagerFlagExists_withAddFlag_shouldBeTrue() {
+    var _manager = parent.manager;
+    var _test_flag = parent.test_flag;
+    _manager.add_flag(_test_flag);
+    assertTrue(_manager.flag_exists(_test_flag.name), "Expected manager.flag_exists() to be true.");
+}
+
+
 /**
  * Testing AnimationManager get_sprite_name
  */
@@ -285,4 +302,62 @@ function test_animationManagerGetSpriteName_withSpriteIndexPassed_shouldBeSprite
 function test_animationManagerGetSpriteName_withNoonePassed_shouldBeNoone() {
     var _manager = new AnimationManager("test manager no sprite", noone);
     assertIsNoone(_manager.get_sprite_name(), "Expected manager.get_sprite_name() to be noone.");
+}
+
+
+/**
+ * Testing AnimationManager set_delta_time
+ */
+function test_animationManagerSetDeltaTime_withTruePassed_shouldBeTrue() {
+    var _manager = parent.manager;
+    _manager.set_delta_time(true);
+    assertTrue(_manager.use_delta_time, "Expected manager.use_delta_time to be true.");
+}
+
+function test_animationManagerSetDeltaTime_withFalsePassed_shouldBeFalse() {
+    var _manager = parent.manager;
+    _manager.set_delta_time(false);
+    assertFalse(_manager.use_delta_time, "Expected manager.use_delta_time to be false.");
+}
+
+
+/**
+ * Testing AnimationManager repr
+ */
+function test_animationManagerRepr_withNameAsString_shouldBeString() {
+    var _manager = parent.manager;
+    assertEqual(_manager.repr(), "<AnimationManager - test manager>", "Expected manager.repr() to be \"<AnimationManager - test manager>\".");
+}
+
+
+/**
+ * Testing AnimationManager destroy
+ */
+function test_animationManagerFlags_withDestroy_shouldBeUndefined() {
+    var _manager = parent.manager;
+    _manager.destroy();
+    assertIsUndefined(_manager.flags, "Expected manager.flags to be undefined.");
+}
+
+
+/**
+ * Testing AnimationManager run
+ */
+function test_animationManagerGetActiveFlagGet_withStateRun_shouldBe0Point15() {
+    var _manager = parent.manager;
+    var _test_flag = parent.test_flag;
+    _manager.add_flag(_test_flag);
+    _manager.set_flag(_test_flag.name);
+    _manager.run();
+    assertEqual(_manager.get_active_flag().get(), 0.15, "Expected manager.get_active_flag().get() to be 0.15.");
+}
+
+function test_animationManagerGetActiveFlagGet_withStateStop_shouldBe0() {
+    var _manager = parent.manager;
+    var _test_flag = parent.test_flag;
+    _manager.state = ANIMATION_MANAGER_STATES.STOP;
+    _manager.add_flag(_test_flag);
+    _manager.set_flag(_test_flag.name);
+    _manager.run();
+    assertEqual(_manager.get_active_flag().get(), 0, "Expected manager.get_active_flag().get() to be 0.");
 }
