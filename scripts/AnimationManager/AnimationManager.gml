@@ -82,8 +82,12 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @returns {struct|undefined} AnimationFlag that represents the name if it exists
      */
     static get_flag = function(_name) {
+        if !is_string(_name) {
+            debug_msg("get_flag() expects a string, received " + typeof(_name) + ".");
+            return undefined;
+        }
         if !flag_exists(_name) {
-            debug_msg("flag with name \"" + _name + "\" does not exist.");
+            debug_msg("flag with name \"" + string(_name) + "\" does not exist.");
             return undefined;
         }
         return flags[? _name];
