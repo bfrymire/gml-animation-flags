@@ -118,6 +118,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
                 return i;
             }
         }
+        return undefined;
     }
 
     /**
