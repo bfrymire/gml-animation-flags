@@ -4,7 +4,7 @@
 
 # Animation Flags
 
-Version 1.2.0
+Version 1.3.0
 
 Animation Flags manages multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
 
