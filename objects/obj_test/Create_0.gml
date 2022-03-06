@@ -9,23 +9,22 @@ runner.tearDown(function() {
 /**
  * Create test suites
  */
+// AnimationFlag test suite
+suite_animation_flag = new TestSuite("suite_animation_flag");
+runner.addTestSuite(suite_animation_flag);
+suite_animation_flag.setUpPerTest(function() {
+    test_flag = new AnimationFlag("test flag", 0, 9, 0.15);
+});
+runner.discover(suite_animation_flag, "test_animationFlag");
 
 // AnimationManager test suite
-test_animation_manager_suite = new TestSuite("animation_manager_suite");
-runner.addTestSuite(test_animation_manager_suite);
-test_animation_manager_suite.setUpPerTest(function() {
-    manager = new AnimationManager("test manager", spr_pixel_platformer_player);
+suite_animation_manager = new TestSuite("suite_animation_manager");
+runner.addTestSuite(suite_animation_manager);
+suite_animation_manager.setUpPerTest(function() {
+    animator = new AnimationManager("test animator", spr_pixel_platformer_player);
     test_flag = new AnimationFlag("test flag", 0, 9, 0.15);
 });
-runner.discover(test_animation_manager_suite, "test_animationManager");
-
-// AnimationFlag variables on init test suite
-animation_flag_variables_on_init_suite = new TestSuite("animation_flag_variables_on_init_suite");
-runner.addTestSuite(animation_flag_variables_on_init_suite);
-animation_flag_variables_on_init_suite.setUp(function() {
-    test_flag = new AnimationFlag("test flag", 0, 9, 0.15);
-});
-runner.discover(animation_flag_variables_on_init_suite, "test_animation_flag_variables_on_init_");
+runner.discover(suite_animation_manager, "test_animationManager");
 
 
 // Run tests

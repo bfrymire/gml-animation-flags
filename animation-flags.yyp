@@ -1,7 +1,7 @@
 {
   "resources": [
     {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},"order":0,},
-    {"id":{"name":"scr_animation_flag_variables_on_init","path":"scripts/scr_animation_flag_variables_on_init/scr_animation_flag_variables_on_init.yy",},"order":1,},
+    {"id":{"name":"scr_animation_flag_tests","path":"scripts/scr_animation_flag_tests/scr_animation_flag_tests.yy",},"order":1,},
     {"id":{"name":"__crispy_config_macros","path":"scripts/__crispy_config_macros/__crispy_config_macros.yy",},"order":0,},
     {"id":{"name":"TestRunner","path":"scripts/TestRunner/TestRunner.yy",},"order":13,},
     {"id":{"name":"scr_animation_manager_tests","path":"scripts/scr_animation_manager_tests/scr_animation_manager_tests.yy",},"order":4,},
