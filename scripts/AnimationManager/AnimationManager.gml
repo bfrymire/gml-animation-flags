@@ -52,7 +52,23 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
                 break;
             }
         }
-        ds_map_delete(flags, _name);
+        recreate_flags_from_flags_order();
+        return self;
+    }
+
+    /**
+     * Creates a new flags struct based on names in flags order
+     * @function recreate_flags_from_flags_order
+     * @returns {struct} self
+     */
+    static recreate_flags_from_flags_order = function() {
+        var _destination = {};
+        var _len = array_length(__flags_order__);
+        for(var i = 0; i < _len; i++) {
+            var _name = __flags_order__[i];
+            _destination[$ _name] = flags[$ _name];
+        }
+        flags = _destination;
         return self;
     }
 
