@@ -46,11 +46,13 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
         flags[$ _name].parent = undefined;
         var _flags_number = get_flags_number();
         // Remove flag name from flags order
-        for(var i = 0; i < _flags_number; i++) {
+        var i = 0;
+        repeat (_flags_number) {
             if __flags_order__[i] == _name {
                 array_delete(__flags_order__, i, 1);
                 break;
             }
+            i++;
         }
         recreate_flags_from_flags_order();
         return self;
@@ -64,9 +66,11 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     static recreate_flags_from_flags_order = function() {
         var _destination = {};
         var _len = array_length(__flags_order__);
-        for(var i = 0; i < _len; i++) {
+        var i = 0;
+        repeat (_len) {
             var _name = __flags_order__[i];
             _destination[$ _name] = flags[$ _name];
+            i++;
         }
         flags = _destination;
         return self;
@@ -129,10 +133,12 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
             return undefined;
         }
         var _flags_number = get_flags_number();
-        for(var i = 0; i < _flags_number; i++) {
+        var i = 0;
+        repeat (_flags_number) {
             if __flags_order__[i] == _name {
                 return i;
             }
+            i++;
         }
         return undefined;
     }
