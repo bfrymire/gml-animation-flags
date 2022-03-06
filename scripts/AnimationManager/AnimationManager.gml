@@ -124,16 +124,16 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     /**
      * Returns AnimationFlag struct that is at given position
      * @function get_flag_position
-     * @param {real} index - Position of flag
-     * @returns {struct|undefined} AnimationFlag struct that is at given position
-     * @note Positions are base-0
+     * @param {real} position - Position of flag
+     * @returns {struct|undefined} AnimationFlag struct that is at given position if applicable
+     * @NOTE: Positions are base-0
      */
-    static get_flag_at_position = function(_index) {
+    static get_flag_at_position = function(_position) {
         var _flags_number = get_flags_number();
-        if _index != clamp(_index, 0, _flags_number - 1) {
+        if _flags_number == 0 || _position != clamp(_position, 0, _flags_number - 1) {
             return undefined;
         }
-        return get_flag(__flags_order__[_index]);
+        return get_flag(__flags_order__[_position]);
     }
 
     /**
