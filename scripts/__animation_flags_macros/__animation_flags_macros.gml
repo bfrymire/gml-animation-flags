@@ -10,4 +10,4 @@
 #macro ANIMATION_FLAGS_TARGET_FPS game_get_speed(gamespeed_fps)
 
 
-show_debug_message("Using " + ANIMATION_FLAGS_NAME + " framework by " + ANIMATION_FLAGS_AUTHOR + ". This is version " + ANIMATION_FLAGS_VERSION + ", released on " + ANIMATION_FLAGS_DATE);
+show_debug_message("Using " + ANIMATION_FLAGS_NAME + " framework by " + ANIMATION_FLAGS_AUTHOR + ". This is version " + ANIMATION_FLAGS_VERSION + ", released on " + ANIMATION_FLAGS_DATE + ".");

@@ -82,3 +82,6 @@ var _draw = function() {
 flag_index_box.set_draw(_draw);
 player_sprite_box.set_draw(_draw);
 flag_picker_box.set_draw(_draw);
+
+// Run unit tests
+instance_create_depth(0, 0, 0, obj_test);

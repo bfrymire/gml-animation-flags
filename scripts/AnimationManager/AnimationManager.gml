@@ -7,7 +7,7 @@
  */
 function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_TIME) constructor {
     name = _name;
-    sprite = _sprite
+    sprite = _sprite;
     use_delta_time = _use_delta_time;
     flags = {};
     __flags_order__ = [];
@@ -19,29 +19,31 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function add_flag
      * @param {struct} flag - AnimationFlag to add to flags
      * @param [boolean=false] replace - Overwrites AnimationFlag with the same name if it exists in flags
+     * @returns {struct} self
      */
     static add_flag = function(_flag, _replace=false) {
         if flag_exists(_flag.name) && !_replace {
             debug_msg("flag with name " + _flag.name + " already exists.");
-            return;
+            return self;
         }
         flags[$ _flag.name] = _flag;
         array_push(__flags_order__, _flag.name);
         _flag.parent = self;
+        return self;
     }
 
     /**
      * Removes flag by name
      * @function remove_flag
      * @param {string} name - Name of AnimationFlag to remove from flags
+     * @returns {struct} self
      */
     static remove_flag = function(_name) {
         if !flag_exists(_name) {
-            debug_msg("flag with name " + _name + " does not exist.");
-            return;
+            debug_msg("flag with name \"" + _name + "\" does not exist.");
+            return self;
         }
         flags[$ _name].parent = undefined;
-        ds_map_delete(flags, _name);
         var _flags_number = get_flags_number();
         // Remove flag name from flags order
         for(var i = 0; i < _flags_number; i++) {
@@ -50,23 +52,25 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
                 break;
             }
         }
+        ds_map_delete(flags, _name);
+        return self;
     }
 
     /**
-     * Sets active flag to name
+     * Sets active flag by name
      * @function set_flag
      * @param {string} name - Name of AnimationFlag to set as active flag
      * @param [boolean=true] reset - AnimationFlag to reset its index to start
      * @returns {struct} self
      */
     static set_flag = function(_name, _reset=true) {
-        if flag_exists(_name) {
-            active_flag = _name;
-            if _reset {
-                get_active_flag().reset();
-            }
-        } else {
-            debug_msg("flag with name " + _name + " does not exists.");
+        if !flag_exists(_name) {
+            debug_msg("flag with name \"" + _name + "\" does not exist.");
+            return self;
+        }
+        active_flag = _name;
+        if _reset {
+            get_active_flag().reset();
         }
         return self;
     }
@@ -78,8 +82,12 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @returns {struct|undefined} AnimationFlag that represents the name if it exists
      */
     static get_flag = function(_name) {
+        if !is_string(_name) {
+            debug_msg("get_flag() expects a string, received " + typeof(_name) + ".");
+            return undefined;
+        }
         if !flag_exists(_name) {
-            debug_msg("flag with name " + _name + " does not exists.");
+            debug_msg("flag with name \"" + string(_name) + "\" does not exist.");
             return undefined;
         }
         return flags[$ _name];
@@ -110,21 +118,22 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
                 return i;
             }
         }
+        return undefined;
     }
 
     /**
      * Returns AnimationFlag struct that is at given position
      * @function get_flag_position
-     * @param {real} index - Position of flag
-     * @returns {struct|undefined} AnimationFlag struct that is at given position
-     * @note Positions are base-0
+     * @param {real} position - Position of flag
+     * @returns {struct|undefined} AnimationFlag struct that is at given position if applicable
+     * @NOTE: Positions are base-0
      */
-    static get_flag_at_position = function(_index) {
+    static get_flag_at_position = function(_position) {
         var _flags_number = get_flags_number();
-        if _index != clamp(_index, 0, _flags_number - 1) {
+        if _flags_number == 0 || _position != clamp(_position, 0, _flags_number - 1) {
             return undefined;
         }
-        return get_flag(__flags_order__[_index]);
+        return get_flag(__flags_order__[_position]);
     }
 
     /**
@@ -151,6 +160,9 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @returns {string} Name of sprite
      */
     static get_sprite_name = function() {
+        if !sprite_exists(sprite) {
+            return noone;
+        }
         return sprite_get_name(sprite);
     }
 
