@@ -160,6 +160,9 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @returns {string} Name of sprite
      */
     static get_sprite_name = function() {
+        if !sprite_exists(sprite) {
+            return noone;
+        }
         return sprite_get_name(sprite);
     }
 
