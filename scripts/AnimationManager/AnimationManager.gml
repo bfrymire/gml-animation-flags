@@ -57,20 +57,20 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     }
 
     /**
-     * Sets active flag to name
+     * Sets active flag by name
      * @function set_flag
      * @param {string} name - Name of AnimationFlag to set as active flag
      * @param [boolean=true] reset - AnimationFlag to reset its index to start
      * @returns {struct} self
      */
     static set_flag = function(_name, _reset=true) {
-        if flag_exists(_name) {
-            active_flag = _name;
-            if _reset {
-                get_active_flag().reset();
-            }
-        } else {
+        if !flag_exists(_name) {
             debug_msg("flag with name \"" + _name + "\" does not exist.");
+            return self;
+        }
+        active_flag = _name;
+        if _reset {
+            get_active_flag().reset();
         }
         return self;
     }
