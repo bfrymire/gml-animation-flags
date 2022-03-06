@@ -9,9 +9,31 @@ var _x = _x_start;
 var _y = _box.y1 + _box.margin + radius;
 var i = 0;
 repeat(sprite_number) {
-    // Draw pip
-    var _outlined = floor(animator.get_active_flag().get()) == i ? false : true;
-    draw_circle(_x, _y, radius, _outlined);
+    if i == clamp(i, _flag.start, _flag.stop) {
+        // Draw outline box if i is within flag range
+        var _x1 = _x - _box.margin;
+        var _y1 = _y - _box.margin;
+        var _x2 = _x + _box.margin + 1;
+        var _y2 = _y + _box.margin + 1;
+        draw_set_color(colors.selection);
+        draw_rectangle(_x1, _y1, _x2, _y2, false);
+
+        // Draw pip
+        var _active_frame = floor(animator.get_active_flag().get()) == i ? true : false;
+        if _active_frame {
+            draw_set_color(colors.foreground);
+            draw_circle(_x, _y, radius, false);
+        } else {
+            draw_set_color(colors.background);
+            draw_circle(_x, _y, radius, false);
+            draw_set_color(colors.foreground);
+            draw_circle(_x, _y, radius, true);
+        }
+    } else {
+        // Draw pip
+        draw_set_color(colors.foreground);
+        draw_circle(_x, _y, radius, true);
+    }
 
     // Update pip position
     _x += radius * 2 + _box.margin;
@@ -19,7 +41,8 @@ repeat(sprite_number) {
 		_x = _x_start;
 		_y += radius * 2 + _box.margin;
 	}
-    i += 1;
+
+    i++;
 }
 
 // Draw player sprite GUIBox
