@@ -19,29 +19,31 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @function add_flag
      * @param {struct} flag - AnimationFlag to add to flags
      * @param [boolean=false] replace - Overwrites AnimationFlag with the same name if it exists in flags
+     * @returns {struct} self
      */
     static add_flag = function(_flag, _replace=false) {
         if flag_exists(_flag.name) && !_replace {
             debug_msg("flag with name " + _flag.name + " already exists.");
-            return;
+            return self;
         }
         flags[? _flag.name] = _flag;
         array_push(__flags_order__, _flag.name);
         _flag.parent = self;
+        return self;
     }
 
     /**
      * Removes flag by name
      * @function remove_flag
      * @param {string} name - Name of AnimationFlag to remove from flags
+     * @returns {struct} self
      */
     static remove_flag = function(_name) {
         if !flag_exists(_name) {
             debug_msg("flag with name \"" + _name + "\" does not exist.");
-            return;
+            return self;
         }
         flags[? _name].parent = undefined;
-        ds_map_delete(flags, _name);
         var _flags_number = get_flags_number();
         // Remove flag name from flags order
         for(var i = 0; i < _flags_number; i++) {
@@ -50,6 +52,8 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
                 break;
             }
         }
+        ds_map_delete(flags, _name);
+        return self;
     }
 
     /**
