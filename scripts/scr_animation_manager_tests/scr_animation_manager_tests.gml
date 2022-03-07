@@ -59,7 +59,7 @@ function test_animationManagerFlagsSize_withAddFlag_shouldBe1() {
     var _animator = parent.animator;
     var _test_flag = parent.test_flag;
     _animator.add_flag(_test_flag);
-    assertEqual(variable_struct_names_count(_animator.flags), 1, "Expected animator.flags size to be 1.");
+    assertEqual(_animator.get_flags_number(), 1, "Expected animator.flags size to be 1.");
 }
 
 function test_animationManagerFlags_withAddFlag_shouldHaveKeyTestFlag() {
@@ -99,6 +99,67 @@ function test_animationManagerAddedFlagParent_withAddFlag_shouldBeAnimationManag
 
 
 /**
+ * Testing AnimationManager update_flag
+ */
+function test_animationManagerGetFlagsNumber_withUpdateNonExistingFlag_shouldBe1() {
+    var _animator = parent.animator;
+    var _test_flag = parent.test_flag;
+    _animator.update_flag("flag not added", _test_flag);
+    assertEqual(_animator.get_flags_number(), 1, "Expected animator.get_flags_number() size to be 1.");
+}
+
+function test_animationManagerGetFlagsNumber_withUpdateExistingFlag_shouldBe1() {
+    var _animator = parent.animator;
+    var _test_flag = parent.test_flag;
+    var _new_flag = new AnimationFlag("new flag", 10, 19, 0.15);
+    _animator.add_flag(_test_flag);
+    _animator.update_flag(_test_flag.name, _new_flag);
+    assertEqual(_animator.get_flags_number(), 1, "Expected animator.get_flags_number() size to be 1.");
+}
+
+function test_animationManagerFlagExistsOldFlag_withUpdateExistingFlag_shouldBeFalse() {
+    var _animator = parent.animator;
+    var _test_flag = parent.test_flag;
+    var _new_flag = new AnimationFlag("new flag", 10, 19, 0.15);
+    _animator.add_flag(_test_flag);
+    _animator.update_flag(_test_flag.name, _new_flag);
+    assertFalse(_animator.flag_exists(_test_flag.name), "Expected animator.flag_exists(test_flag.name) to be false.");
+}
+
+function test_animationManagerGetActiveFlag_withUpdateExistingFlagSet_shouldBeNewFlag() {
+    var _animator = parent.animator;
+    var _test_flag = parent.test_flag;
+    var _new_flag = new AnimationFlag("new flag", 10, 19, 0.15);
+    _animator.add_flag(_test_flag);
+    _animator.set_flag(_test_flag.name);
+    _animator.update_flag(_test_flag.name, _new_flag);
+    assertEqual(_animator.get_active_flag(), _new_flag, "Expected animator.get_active_flag() to be new_flag.");
+}
+
+function test_animationManagerActiveFlag_withUpdateExistingFlagSet_shouldBeNewFlagName() {
+    var _animator = parent.animator;
+    var _test_flag = parent.test_flag;
+    var _new_flag = new AnimationFlag("new flag", 10, 19, 0.15);
+    _animator.add_flag(_test_flag);
+    _animator.set_flag(_test_flag.name);
+    _animator.update_flag(_test_flag.name, _new_flag);
+    assertEqual(_animator.active_flag, _new_flag.name, "Expected animator.active_flag to be new_flag.name.");
+}
+
+function test_animationManagerFlagsOrderPosition_withUpdateExistingFlagSet_shouldBeAtOldFlagPosition() {
+    var _animator = parent.animator;
+    var _flag_position_0 = new AnimationFlag("flag_position_0", 0, 9, 0.15);
+    var _flag_position_1 = new AnimationFlag("flag_position_1", 10, 19, 0.15);
+    var _flag_position_2 = new AnimationFlag("flag_position_2", 20, 29, 0.15);
+    _animator.add_flag(_flag_position_0);
+    _animator.set_flag("flag_position_0");
+    _animator.add_flag(_flag_position_1);
+    _animator.update_flag("flag_position_0", _flag_position_2);
+    assertEqual(_animator.get_flag_position("flag_position_2"), 0, "Expected _animator.get_flag_position(\"flag_position_2\") to be 0.");
+}
+
+
+/**
  * Testing AnimationManager remove_flag
  */
 function test_animationManagerFlagsSize_withRemoveFlag_shouldBe0() {
@@ -106,7 +167,7 @@ function test_animationManagerFlagsSize_withRemoveFlag_shouldBe0() {
     var _test_flag = parent.test_flag;
     _animator.add_flag(_test_flag);
     _animator.remove_flag(_test_flag.name);
-    assertEqual(variable_struct_names_count(_animator.flags), 0, "Expected animator.flags size to be 0.");
+    assertEqual(_animator.get_flags_number(), 0, "Expected animator.flags size to be 0.");
 }
 
 function test_animationManagerFlags_withRemoveFlag_shouldNotFindTestFlagNameInFlags() {
