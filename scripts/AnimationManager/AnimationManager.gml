@@ -33,6 +33,32 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
     }
 
     /**
+     * Updates a flag, if flag does not exist, adds a new flag
+     * @function update_flag
+     * @param {string} name - Name of existing AnimationFlag to update
+     * @param {struct} flag - Source AnimationFlag to update the destination flag
+     * @returns {struct} self
+     */
+    static update_flag = function(_name, _flag) {
+        if flag_exists(_name) {
+            var _position = get_flag_position(_name);
+            var _is_active_flag = !is_undefined(get_active_flag()) && get_active_flag().name == _name;
+            remove_flag(_name);
+            add_flag(_flag);
+            if get_flag_position(_flag.name) != _position {
+                array_pop(__flags_order__);
+                array_insert(__flags_order__, _position, _flag.name);
+            }
+            if _is_active_flag {
+                set_flag(_flag.name);
+            }
+        } else {
+            add_flag(_flag);
+        }
+        return self;
+    }
+
+    /**
      * Removes flag by name
      * @function remove_flag
      * @param {string} name - Name of AnimationFlag to remove from flags
