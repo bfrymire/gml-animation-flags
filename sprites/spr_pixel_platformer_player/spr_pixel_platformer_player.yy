@@ -427,7 +427,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_pixel_platformer_player","path":"sprites/spr_pixel_platformer_player/spr_pixel_platformer_player.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_pixel_platformer_player",
     "tags": [],
     "resourceType": "GMSequence",
