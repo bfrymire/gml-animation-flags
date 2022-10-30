@@ -125,15 +125,15 @@ function test_animationFlagModulo_with5and5_shouldBe0() {
 }
 
 /**
- * Testing AnimationFlag repr
+ * Testing AnimationFlag toString
  */
 function test_animationFlagRepr_withNameAndIndex0_shouldBeNameandIndex0() {
     var _test_flag = parent.test_flag;
-    assertEqual(_test_flag.repr(), "<AnimationFlag - test flag 0>", "Expected test_flag.repr() to be \"<AnimationFlag - test flag 0>\".");
+    assertEqual(string(_test_flag), "<AnimationFlag - test flag 0>", "Expected string(test_flag) to be \"<AnimationFlag - test flag 0>\".");
 }
 
 function test_animationFlagRepr_withNameAndIndex0Point15_shouldBeNameandIndex0() {
     var _test_flag = parent.test_flag;
     _test_flag.index = 0.15;
-    assertEqual(_test_flag.repr(), "<AnimationFlag - test flag 0>", "Expected test_flag.repr() to be \"<AnimationFlag - test flag 0>\".");
+    assertEqual(string(_test_flag), "<AnimationFlag - test flag 0>", "Expected string(test_flag) to be \"<AnimationFlag - test flag 0>\".");
 }

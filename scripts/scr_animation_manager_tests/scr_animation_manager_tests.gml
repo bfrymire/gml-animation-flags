@@ -398,11 +398,11 @@ function test_animationManagerSetDeltaTime_withFalsePassed_shouldBeFalse() {
 
 
 /**
- * Testing AnimationManager repr
+ * Testing AnimationManager toString
  */
 function test_animationManagerRepr_withNameAsString_shouldBeString() {
     var _animator = parent.animator;
-    assertEqual(_animator.repr(), "<AnimationManager - test animator>", "Expected animator.repr() to be \"<AnimationManager - test animator>\".");
+    assertEqual(string(_animator), "<AnimationManager - test animator>", "Expected string(animator) to be \"<AnimationManager - test animator>\".");
 }
 
 
