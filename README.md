@@ -4,7 +4,7 @@
 
 # Animation Flags
 
-Version 1.4.0
+Version 1.4.1
 
 Animation Flags manages multiple animations for a single sprite by flagging start and end points of the animations for GameMaker Studio 2.3.3+
 
@@ -41,10 +41,8 @@ animator.set_flag("run");
 Many of the limitations will be fixed in future updates:
 
 - Does not tell you if the animation ends
-- Need to manually edit `AnimationFlag` `start` and `stop` indexes if the frames for animations for `AnimationManager` are changed
-- No implementation to change `AnimationFlag.speed` on the fly
+- Need to manually edit `AnimationFlag` `start` and `stop` indexes if the sprite frames used in `AnimationManager` are changed
 - `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) or the Frame Speed from the [Sprite Editor](https://manual.yoyogames.com/The_Asset_Editors/Sprites.htm) into consideration
-- Animation subimages need to be in order
 
 ## Credits
 
