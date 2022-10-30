@@ -44,7 +44,7 @@ Many of the limitations will be fixed in future updates:
 - Need to manually edit `AnimationFlag` `start` and `stop` indexes if the sprite frames used in `AnimationManager` are changed
 - `AnimationFlag.speed` does not take Frame Information from the [Image Editor](https://manual.yoyogames.com/The_Asset_Editors/Image_Editor.htm) or the Frame Speed from the [Sprite Editor](https://manual.yoyogames.com/The_Asset_Editors/Sprites.htm) into consideration
 
-## Credits
+## Attributions
 
  - Pixel Platformer Player sprite in example created by [@Dead Revolver](https://deadrevolver.itch.io/pixel-prototype-player-sprites)
  - Color palette in example from [Dracula Theme](https://github.com/dracula/dracula-theme#color-palette)
