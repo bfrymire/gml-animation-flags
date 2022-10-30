@@ -80,10 +80,10 @@ function AnimationFlag(_name, _start, _stop, _speed) constructor {
 
     /**
      * Returns printable representation of AnimationFlag
-     * @function repr
+     * @function toString
      * @returns {string} Printable representation of AnimationFlag
      */
-    static repr = function() {
+    static toString = function() {
         return "<AnimationFlag - " + name + " " + string(floor(get())) + ">";
     }
 

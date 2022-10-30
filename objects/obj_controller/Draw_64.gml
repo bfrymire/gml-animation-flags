@@ -51,7 +51,7 @@ _box.draw();
 var _scale = min(_box.get_inner_width(), _box.get_inner_height()) / max(sprite_get_width(animator.sprite), sprite_get_height(animator.sprite));
 draw_sprite_ext(animator.sprite, animator.get_active_flag().get(), _box.get_width_mid_point(), _box.y2 - _box.margin, _scale, _scale, 0, c_white, 1);
 var _details = ANIMATION_FLAGS_NAME + " v." + ANIMATION_FLAGS_VERSION + " " + ANIMATION_FLAGS_DATE + "\n";
-_details += animator.get_active_flag().repr();
+_details += string(animator.get_active_flag());
 draw_text(_box.x1 + _box.margin, _box.y1 + _box.margin, _details);
 
 // Draw flag picker GUIBox

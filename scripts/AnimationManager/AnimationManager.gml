@@ -234,7 +234,7 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
      * @param {*} msg - Debug message to print in output
      */
     static debug_msg = function(_msg) {
-        show_debug_message(repr() + " - " + string(_msg));
+        show_debug_message(toString() + " - " + string(_msg));
     }
 
     /**
@@ -256,10 +256,10 @@ function AnimationManager(_name, _sprite, _use_delta_time=ANIMATION_FLAGS_DELTA_
 
     /**
      * Returns printable representation of AnimationManager
-     * @function repr
+     * @function toString
      * @returns {string} Printable representation of AnimationManager
      */
-    static repr = function() {
+    static toString = function() {
         return "<AnimationManager - " + name + ">";
     }
 }
